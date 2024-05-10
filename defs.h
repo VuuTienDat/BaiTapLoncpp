@@ -37,11 +37,7 @@ typedef struct Map{
 typedef struct Input{
   int left_;
   int right_;
-
   int jump_;
-
-
-
 };
 bool Check_Crash(const SDL_Rect &object1 ,const SDL_Rect &object2);
 TTF_Font* loadFont(const char* path, int size);

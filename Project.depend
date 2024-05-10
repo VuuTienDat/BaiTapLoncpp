@@ -31,7 +31,7 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1715356524 source:d:\project_game\project\main.cpp
+1715360265 source:d:\project_game\project\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -54,7 +54,7 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1715354863 d:\project_game\project\defs.h
+1715360316 d:\project_game\project\defs.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
@@ -90,7 +90,7 @@
 1715348394 source:d:\project_game\project\mainobjects.cpp
 	"MainObjects.h"
 
-1715357154 source:d:\project_game\project\menu.cpp
+1715357496 source:d:\project_game\project\menu.cpp
 	"Menu.h"
 
 1715355642 d:\project_game\project\menu.h

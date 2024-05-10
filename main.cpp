@@ -298,6 +298,7 @@ while(check){
                           int m = threat_rect.x; int n = threat_rect.y;
 
                          threat_list[i]->Freedom();
+                         threat_list[i] = nullptr;
                           threat_list.erase(threat_list.begin()+j);
                           mark_threat++;
 
@@ -402,7 +403,14 @@ while(check){
 
 
 }
-  cerr << mark_ << endl;
+  for(int i = 0; i < threat_list.size();i++)
+  {
+      if(threat_list[i] != nullptr)
+      {
+          threat_list[i]->Freedom();
+          threat_list[i] = nullptr;
+      }
+  }
  threat_list.clear();
 
   if(BackGround != nullptr)
