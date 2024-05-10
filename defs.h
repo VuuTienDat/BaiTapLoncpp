@@ -78,6 +78,7 @@ void play_Chunk(Mix_Chunk* gChunk);
 #define Play_Again 5
 #define Win_Game 6
 #define Loser 7
+#define Mark_index 8
 
 #define Turn_on 1
 #define Turn_off 0

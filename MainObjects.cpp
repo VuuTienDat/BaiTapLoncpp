@@ -21,6 +21,7 @@ count_money = 0;
 check_drop = false;
 check_bullet= false;
 check_win = false;
+
 bell = loadSound("music\\beep_.wav");
 
 
@@ -329,12 +330,12 @@ void MainObject::set_clips()
 
  }
 
-void MainObject::Increase_Money(){count_money++;}
+
 
 void MainObject::CheckToMap(Map& map_data)
     {
 
-
+        int money_increase = 0;
         int x1 = 0;
         int x2 = 0;
         int y1 = 0;
@@ -360,14 +361,26 @@ void MainObject::CheckToMap(Map& map_data)
                        map_data.tile[y1][x2] = 0;
                        map_data.tile[y2][x2] = 0;
                        check_win = true;
+
                    }
-                if(val1 == MONEY || val2 == MONEY)
+               else if(val1 == MONEY )
                    {
+
                        play_Chunk(bell);
                        map_data.tile[y1][x2] =0;
-                       map_data.tile[y2][x2] =0;
-                       Increase_Money();
+                       count_money++;
+
+
+
+
                    }
+               else if(val2 == MONEY)
+                 {
+                      play_Chunk(bell);
+                      map_data.tile[y2][x2] =0;
+                      count_money++;
+
+                 }
 
                else
                {
@@ -376,6 +389,7 @@ void MainObject::CheckToMap(Map& map_data)
                      x_pos = x2 * TILE_SIZE;
                      x_pos  -= width_frame +1;
                      x_dx  = 0;
+
                    }
                }
 
@@ -389,21 +403,34 @@ void MainObject::CheckToMap(Map& map_data)
               int val2 = map_data.tile[y2][x1];
 
 
-
-                  if(val1 == Win_Flag||val2 ==Win_Flag)
+             if(val1 == Win_Flag||val2 ==Win_Flag)
                    {
-                       map_data.tile[y1][x2] = 0;
-                       map_data.tile[y2][x2] = 0;
+                       map_data.tile[y1][x1] = 0;
+                       map_data.tile[y2][x1] = 0;
                        check_win = true;
-                   }
 
-             if(val1 == MONEY || val2 == MONEY)
-                   {
-                       play_Chunk(bell);
-                       map_data.tile[y1][x2] =0;
-                       map_data.tile[y2][x2] =0;
-                       Increase_Money();
                    }
+               else if(val1 == MONEY )
+                   {
+
+                       play_Chunk(bell);
+                       map_data.tile[y1][x1] =0;
+                       count_money++;
+
+
+
+
+
+                   }
+               else if(val2 == MONEY)
+                 {
+                      play_Chunk(bell);
+                      map_data.tile[y2][x1] =0;
+                      count_money++;
+
+
+                 }
+
 
              else
             {
@@ -435,24 +462,40 @@ void MainObject::CheckToMap(Map& map_data)
            {
              int val1 = map_data.tile[y2][x1];
              int val2 = map_data.tile[y2][x2];
-
-
-
               if(val1 == Win_Flag||val2 ==Win_Flag)
-               {
-                   map_data.tile[y1][x2] = 0;
-                   map_data.tile[y2][x2] = 0;
-                   check_win = true;
-               }
-              if(val1 == MONEY || val2 == MONEY)
-                   {   play_Chunk(bell);
-                       map_data.tile[y1][x2] =0;
-                       map_data.tile[y2][x2] =0;
-                       Increase_Money();
+                   {
+                       map_data.tile[y2][x1] = 0;
+                       map_data.tile[y2][x2] = 0;
+                       check_win = true;
+
                    }
+               else if(val1 == MONEY )
+                   {
+
+                       play_Chunk(bell);
+                       map_data.tile[y2][x1] =0;
+                       count_money++;
+
+
+
+
+
+                   }
+               else if(val2 == MONEY)
+                 {
+                      play_Chunk(bell);
+                      map_data.tile[y2][x2] =0;
+                      count_money++;
+
+                 }
+
+
+
+
 
             else
             {
+
                if(val1!= BLANK_TILE || val2!= BLANK_TILE)
                 {
                       y_pos = y2* TILE_SIZE;
@@ -469,22 +512,39 @@ void MainObject::CheckToMap(Map& map_data)
              int val1 = map_data.tile[y1][x1];
              int val2 = map_data.tile[y1][x2];
 
-
               if(val1 == Win_Flag||val2 ==Win_Flag)
-               {
-                   map_data.tile[y1][x2] = 0;
-                   map_data.tile[y2][x2] = 0;
-                   check_win = true;
-               }
+                   {
+                       map_data.tile[y1][x1] = 0;
+                       map_data.tile[y1][x2] = 0;
+                       check_win = true;
 
-               if(val1 == MONEY || val2 == MONEY)
-                   {  play_Chunk(bell);
-                       map_data.tile[y1][x2] =0;
-                       map_data.tile[y2][x2] =0;
-                       Increase_Money();
                    }
+               else if(val1 == MONEY )
+                   {
+
+                       play_Chunk(bell);
+                       map_data.tile[y1][x1] =0;
+                       count_money++;
+
+
+
+
+
+                   }
+               else if(val2 == MONEY)
+                 {
+                      play_Chunk(bell);
+                      map_data.tile[y1][x2] =0;
+                      count_money++;
+
+                 }
+
+
+
+
              else
              {
+
                    if(val1!= BLANK_TILE || val2 != BLANK_TILE)
                   {
                       y_pos = (y1 + 1)*TILE_SIZE;

@@ -31,7 +31,7 @@ class MainObject: public objects
        }
      vector <BulletObjects*> get_bullet_list(){return bullet_list;}
       void HandleBullet(SDL_Renderer* des);
-      void Increase_Money();
+
       void set_come_back_time(const int &come_back){come_back_time = come_back;}
       int get_come_back_time(){return come_back_time;}
       bool get_check_win(){return check_win;}
@@ -39,6 +39,9 @@ class MainObject: public objects
       bool get_check_bullet(){return check_bullet;}
       void set_x_pos(const int& x){x_pos = x;}
       void set_play_again(){ check_win = false;}
+     void set_x_dx(){x_dx= 0 ;}
+
+
       int get_money(){return count_money;}
       void set_money(){count_money = 0;}
 
@@ -63,9 +66,11 @@ class MainObject: public objects
 
        int come_back_time;
        int count_money;
+
     bool check_drop;
     bool check_bullet;
     bool check_win;
+
     Mix_Chunk *bell = nullptr;
 
 

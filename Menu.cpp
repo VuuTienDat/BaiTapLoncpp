@@ -15,15 +15,21 @@ Menu::Menu()
     text_ff[5] = "Play Again";
     text_ff[6] = "You Win";
     text_ff[7] = "You Lose";
+    text_ff[8] = "Mark: ";
+
     color1 ={255,255,70,255};
     color2 ={0 ,255, 255,255};
     color_win={255,0,0,255};
-    color_lose={0,0,0,255};
+    color_lose={255,127,39,255};
     Change_color = false;
     check_music = Turn_off;
     ring = loadSound("music\\beep_1.mp3");
     font1 = loadFont("Font\\extra.ttf",60);
     font2 = loadFont("Font\\extra.ttf",100);
+
+
+    index_mark={810,400,0,0};
+    text_ord[Mark_index]={480,400,0,0};
 
 }
 
@@ -59,7 +65,7 @@ void Menu::HanldeInputAction1(SDL_Event event,int x , int y , int& n)
     {
      play_Chunk(ring);
      set_change_color(true,Play_Game);
-      if(event.type == SDL_MOUSEBUTTONDOWN){ play_Chunk(ring); n = 4;}
+      if(event.type == SDL_MOUSEBUTTONDOWN){  n = 4;}
     }
      else {set_change_color(false,Play_Game); }
 
@@ -136,7 +142,7 @@ void Menu::Show_Menu(SDL_Renderer* des)
 
     for(int i =0 ; i <= 4 ; i++)
     {
-        Set_Rect_Text(text_ord[i],text_ff[i].c_str(),font1,des);
+
 
         Set_Rect_Coordinate(text_ord[i], 480, 150 + text_ord[i].h *i );
      if(check_click[i] == false)
@@ -157,7 +163,7 @@ void Menu::Show_Menu(SDL_Renderer* des)
 
 }
 
-void Menu::Set_Render_Text(const char* text,const SDL_Rect&rect, TTF_Font* font, SDL_Renderer* des,SDL_Color color )
+void Menu::Set_Render_Text(const char* text, SDL_Rect&rect, TTF_Font* font, SDL_Renderer* des,SDL_Color color )
 {
 
        SDL_Surface* textSurface = TTF_RenderText_Solid( font, text,color );
@@ -165,7 +171,8 @@ void Menu::Set_Render_Text(const char* text,const SDL_Rect&rect, TTF_Font* font,
             SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "Render text surface %s", TTF_GetError());
             return ;
         }
-
+        rect.w = textSurface->w;
+        rect.h = textSurface->h;
         SDL_Texture* texture = SDL_CreateTextureFromSurface( des, textSurface );
         if( texture == nullptr ) {
             SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "Create texture from text %s", SDL_GetError());
@@ -185,17 +192,7 @@ void Menu::Set_Render_Text(const char* text,const SDL_Rect&rect, TTF_Font* font,
 
 }
 
-void Menu::Set_Rect_Text(SDL_Rect& text_, const char* text_font, TTF_Font* font ,SDL_Renderer* des)
-{  SDL_Color color = {255,0,0,255};
-   SDL_Surface* surface_text = TTF_RenderText_Solid(font,text_font,color);
-   if(surface_text == nullptr){SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR,"Loi %s \n", IMG_GetError() );return ;}
-   text_.w = surface_text->w;
-   text_.h = surface_text->h;
 
-   SDL_FreeSurface(surface_text);
-
-
-}
 void Menu::Set_Rect_Coordinate(SDL_Rect& rect,int x, int y)
 {
     rect.x = x;
@@ -211,18 +208,24 @@ bool Menu::Check_Focus_With_Rect(const SDL_Rect& rect, const int& x, const int& 
     return x>=posx1 && x<=posx2&& y >= posy1 && y <= posy2;
 
 }
-void Menu::Show_EndGame(SDL_Renderer* des)
+void Menu::Show_EndGame(SDL_Renderer* des,const int &x)
 {
 
     SDL_RenderCopy(des,obj,NULL,NULL);
 
 
-    Set_Rect_Text(text_ord[Loser],text_ff[Loser].c_str(),font2,des);
+
     Set_Rect_Coordinate(text_ord[Loser], 475, 100 );
     Set_Render_Text(text_ff[Loser].c_str(),text_ord[Loser],font2,des,color_lose);
 
 
-    Set_Rect_Text(text_ord[Play_Again],text_ff[Play_Again].c_str(),font1,des);
+
+    Set_Render_Text(text_ff[Mark_index].c_str(),text_ord[Mark_index],font2,des,color_lose);
+
+    Set_Render_Text_Number(index_mark,x,font2,des);
+
+
+
     Set_Rect_Coordinate(text_ord[Play_Again], 480, 240 );
     if(check_click[Play_Again] == false)
      {
@@ -234,7 +237,7 @@ void Menu::Show_EndGame(SDL_Renderer* des)
 
       }
 
-    Set_Rect_Text(text_ord[Exit_Game],text_ff[Exit_Game].c_str(),font1,des);
+
     Set_Rect_Coordinate(text_ord[Exit_Game], 480, 300);
     if(check_click[Exit_Game] == false)
      {
@@ -247,16 +250,21 @@ void Menu::Show_EndGame(SDL_Renderer* des)
       }
 }
 
-void Menu::Show_Win(SDL_Renderer* des)
+void Menu::Show_Win(SDL_Renderer* des,const int& x)
 {
 
     SDL_RenderCopy(des,obj,NULL,NULL);
-    Set_Rect_Text(text_ord[Win_Game],text_ff[Win_Game].c_str(),font2,des);
+
     Set_Rect_Coordinate(text_ord[Win_Game], 450, 100 );
     Set_Render_Text(text_ff[Win_Game].c_str(),text_ord[Win_Game],font2,des,color_win);
 
+    Set_Rect_Coordinate(text_ord[Mark_index], 400, 400 );
+    Set_Render_Text(text_ff[Mark_index].c_str(),text_ord[Mark_index],font2,des,color_lose);
 
-    Set_Rect_Text(text_ord[Play_Again],text_ff[Play_Again].c_str(),font1,des);
+    Set_Render_Text_Number(index_mark,x,font2,des);
+
+
+
     Set_Rect_Coordinate(text_ord[Play_Again], 480, 240 );
     if(check_click[Play_Again] == false)
      {
@@ -268,7 +276,7 @@ void Menu::Show_Win(SDL_Renderer* des)
 
       }
 
-    Set_Rect_Text(text_ord[Exit_Game],text_ff[Exit_Game].c_str(),font1,des);
+
     Set_Rect_Coordinate(text_ord[Exit_Game], 480, 300);
     if(check_click[Exit_Game] == false)
      {
@@ -284,3 +292,31 @@ void Menu::Show_Win(SDL_Renderer* des)
 
 
 }
+
+
+void Menu::Set_Render_Text_Number(SDL_Rect& rect_,const int& x, TTF_Font* font, SDL_Renderer* des)
+{
+       string m = to_string(x);
+
+       SDL_Surface* textSurface = TTF_RenderText_Solid( font, m.c_str(),color_lose);
+        if( textSurface == nullptr ) {
+            SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "Render text surface %s", TTF_GetError());
+            return ;
+        }
+        rect_.w = textSurface->w;
+        rect_.h = textSurface->h;
+        SDL_Texture* texture = SDL_CreateTextureFromSurface( des, textSurface );
+        if( texture == nullptr ) {
+            SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "Create texture from text %s", SDL_GetError());
+            return ;
+        }
+
+
+
+
+         SDL_RenderCopy(des,texture,NULL,&rect_);
+         SDL_FreeSurface( textSurface );
+         SDL_DestroyTexture(texture);
+
+}
+

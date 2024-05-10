@@ -7,10 +7,10 @@ class graphic_
     public:
         graphic_();
        ~graphic_();
-     void Show_(SDL_Renderer *des,int& , int& );
+     void Show_(SDL_Renderer *des,int& , int&, int& );
      SDL_Texture* loadImg(const char* s,SDL_Rect&, SDL_Renderer* );
-     void Set_Rect_Text(SDL_Rect& rect_,int x ,TTF_Font* font ,SDL_Renderer* des);
-     void Set_Render_Text(int x,const SDL_Rect&, TTF_Font* font, SDL_Renderer* des,SDL_Color);
+
+     void Set_Render_Text(int x, SDL_Rect&, TTF_Font* font, SDL_Renderer* des,SDL_Color);
      void free();
      void set_up(SDL_Renderer* );
 
@@ -19,16 +19,20 @@ class graphic_
     private:
         SDL_Rect heart;
         SDL_Rect coins;
-        SDL_Rect back_ground;
+        SDL_Rect marks;
+
         SDL_Rect index_heart;
         SDL_Rect index_coins;
+        SDL_Rect index_marks;
 
 
         SDL_Texture* Heart = nullptr;
         SDL_Texture* Coins = nullptr;
         SDL_Texture* Back_ground = nullptr;
+        SDL_Texture* Mark_ = nullptr;
         TTF_Font *font_1 = nullptr;
         SDL_Color color1;
+        SDL_Color color2;
 
 };
 

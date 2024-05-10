@@ -124,20 +124,28 @@ if (top_a == top_b && right_a == right_b && bottom_a == bottom_b)
     }
     void play_Music(Mix_Music *gMusic ,int check_)
     {
-        if(check_ == Turn_on)
-        {
+
                 if (gMusic == nullptr) return;
-            Mix_VolumeMusic(MIX_MAX_VOLUME/20);
+            Mix_VolumeMusic(MIX_MAX_VOLUME/5);
+         if(check_ == Turn_on)
+            {
+                if(Mix_PausedMusic() == 1 || Mix_PlayingMusic() == 0)
+                {
+                    Mix_PlayMusic(gMusic,-1);
+                }
 
-            if (Mix_PlayingMusic() == 0) {
-                Mix_PlayMusic( gMusic, -1 );
-            }
-            else if( Mix_PausedMusic() == 1 ) {
-                Mix_ResumeMusic();
-            }
 
+
+
+            }
+        else if(check_ == Turn_off)
+        {
+            Mix_PauseMusic();
         }
-       else{   Mix_HaltMusic(); }
+
+
+
+
     }
 
     Mix_Chunk* loadSound(const char* path) {
@@ -150,7 +158,7 @@ if (top_a == top_b && right_a == right_b && bottom_a == bottom_b)
     void play_Chunk(Mix_Chunk* gChunk) {
         if (gChunk != nullptr) {
             Mix_PlayChannel( -1, gChunk, 0 );
-            Mix_VolumeChunk(gChunk,MIX_MAX_VOLUME/5);
+            Mix_VolumeChunk(gChunk,MIX_MAX_VOLUME);
         }
     }
 
