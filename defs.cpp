@@ -126,7 +126,7 @@ if (top_a == top_b && right_a == right_b && bottom_a == bottom_b)
     {
 
                 if (gMusic == nullptr) return;
-            Mix_VolumeMusic(MIX_MAX_VOLUME/5);
+             Mix_VolumeMusic(MIX_MAX_VOLUME/5);
          if(check_ == Turn_on)
             {
                 if(Mix_PausedMusic() == 1 || Mix_PlayingMusic() == 0)
@@ -157,6 +157,7 @@ if (top_a == top_b && right_a == right_b && bottom_a == bottom_b)
     }
     void play_Chunk(Mix_Chunk* gChunk) {
         if (gChunk != nullptr) {
+
             Mix_PlayChannel( -1, gChunk, 0 );
             Mix_VolumeChunk(gChunk,MIX_MAX_VOLUME);
         }
