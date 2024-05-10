@@ -36,16 +36,22 @@
 		</Compiler>
 		<Unit filename="BulletObjects.cpp" />
 		<Unit filename="BulletObjects.h" />
+		<Unit filename="Exploitation_objects.cpp" />
+		<Unit filename="Exploitation_objects.h" />
 		<Unit filename="ImpTimer.cpp" />
 		<Unit filename="ImpTimer.h" />
 		<Unit filename="MainObjects.cpp" />
 		<Unit filename="MainObjects.h" />
 		<Unit filename="Menu.cpp" />
 		<Unit filename="Menu.h" />
+		<Unit filename="ThreatObjects.cpp" />
+		<Unit filename="ThreatObjects.h" />
+		<Unit filename="defs.cpp" />
 		<Unit filename="defs.h" />
 		<Unit filename="game_map.cpp" />
 		<Unit filename="game_map.h" />
-		<Unit filename="logic.h" />
+		<Unit filename="graphic_.cpp" />
+		<Unit filename="graphic_.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="objects.cpp" />
 		<Unit filename="objects.h" />

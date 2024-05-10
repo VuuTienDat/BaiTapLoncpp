@@ -22,6 +22,7 @@ struct GameMap {
     void LoadMap(char* name);
     void LoadTiles(SDL_Renderer* screen);
     void DrawMap(SDL_Renderer* screen);
+    void set_start_x(const int& x){ game_map.start_x = x;}
 
 };
 

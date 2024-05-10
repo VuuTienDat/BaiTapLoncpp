@@ -31,7 +31,7 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1713722085 source:d:\project_game\project\main.cpp
+1715329458 source:d:\project_game\project\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -41,52 +41,62 @@
 	"objects.h"
 	"MainObjects.h"
 	"ImpTimer.h"
+	"BulletObjects.h"
 	<SDL_ttf.h>
+	"ThreatObjects.h"
+	"Exploitation_objects.h"
+	<SDL_mixer.h>
+	"Menu.h"
+	"graphic_.h"
 
 1713109122 d:\project_game\project\graphics.h
 	"defs.h"
 	<SDL.h>
 	<SDL_image.h>
 
-1713714447 d:\project_game\project\defs.h
+1715324010 d:\project_game\project\defs.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
+	<SDL_ttf.h>
+	<SDL_mixer.h>
 
 1712989522 d:\project_game\project\logic.h
 
-1713379353 d:\project_game\project\game_map.h
+1715276515 d:\project_game\project\game_map.h
 	"objects.h"
 	"defs.h"
 	<cstdio>
 	<SDL.h>
 	<SDL_image.h>
 
-1713379353 d:\project_game\project\objects.h
+1715015562 d:\project_game\project\objects.h
 	"defs.h"
 	<SDL.h>
 	<SDL_image.h>
 
-1713703863 d:\project_game\project\mainobjects.h
+1715328897 d:\project_game\project\mainobjects.h
 	"objects.h"
+	<vector>
+	"BulletObjects.h"
 
-1713714175 source:d:\project_game\project\game_map.cpp
+1715275119 source:d:\project_game\project\game_map.cpp
 	<fstream>
 	"game_map.h"
 
 1713379353 source:d:\project_game\project\objects.cpp
 	"objects.h"
 
-1713717753 source:d:\project_game\project\mainobjects.cpp
+1715328571 source:d:\project_game\project\mainobjects.cpp
 	"MainObjects.h"
 
-1713526407 source:d:\project_game\project\menu.cpp
+1715288989 source:d:\project_game\project\menu.cpp
 	"Menu.h"
 
-1713526407 d:\project_game\project\menu.h
-	"objects.h"
+1715316903 d:\project_game\project\menu.h
 	"defs.h"
 	"SDL_ttf.h"
+	<string>
 
 1713674962 d:\project_game\project\imptimer.h
 	<SDL.h>
@@ -94,4 +104,37 @@
 
 1713674980 source:d:\project_game\project\imptimer.cpp
 	"ImpTimer.h"
+
+1715032614 source:d:\project_game\project\bulletobjects.cpp
+	"BulletObjects.h"
+	"objects.h"
+
+1715055081 d:\project_game\project\bulletobjects.h
+	"objects.h"
+	"defs.h"
+
+1715275563 source:d:\project_game\project\threatobjects.cpp
+	"ThreatObjects.h"
+
+1715134577 d:\project_game\project\threatobjects.h
+	"defs.h"
+	"objects.h"
+	"BulletObjects.h"
+	<vector>
+
+1715282255 source:d:\project_game\project\defs.cpp
+	"defs.h"
+
+1715081045 source:d:\project_game\project\exploitation_objects.cpp
+	"Exploitation_objects.h"
+
+1715080534 d:\project_game\project\exploitation_objects.h
+	"objects.h"
+
+1715327793 source:d:\project_game\project\graphic_.cpp
+	"graphic_.h"
+	<string>
+
+1715326818 d:\project_game\project\graphic_.h
+	"defs.h"
 

@@ -3,10 +3,12 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <iostream>
+#include <SDL_ttf.h>
+#include <SDL_mixer.h>
  static SDL_Renderer *Renderer_ = NULL;
  static SDL_Window *Window_   = NULL;
  static SDL_Event Event_ ;
- static SDL_Surface *img_menu;
+
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 640;
@@ -35,19 +37,29 @@ typedef struct Map{
 typedef struct Input{
   int left_;
   int right_;
-  int up_;
-  int down_;
+
   int jump_;
 
 
 
 };
+bool Check_Crash(const SDL_Rect &object1 ,const SDL_Rect &object2);
+TTF_Font* loadFont(const char* path, int size);
+SDL_Texture* renderText(const char* text, TTF_Font* font, SDL_Color textColor,SDL_Renderer * des);
+Mix_Music *loadMusic(const char* path);
+void play_Music(Mix_Music *gMusic, int check_);
+Mix_Chunk* loadSound(const char* path);
+void play_Chunk(Mix_Chunk* gChunk);
+
+
 #define GRAVITY_SPEED 8
 #define MAX_FALL_SPEED 10
 #define PLAYER_SPEED 10
 #define BLANK_TILE 0
-
-
+#define MONEY 4
+#define Threat_Velocity 2;
+#define Threat_Gravity 9;
+#define Win_Flag 11
 
 
 
@@ -57,5 +69,24 @@ typedef struct Input{
 #define CHOOSE_MUSIC 3
 #define CHOOSE_SOUND 4
 
+
+#define Play_Game 0
+#define Exit_Game 1
+#define Sound_Mode 2
+#define On 3
+#define Off 4
+#define Play_Again 5
+#define Win_Game 6
+#define Loser 7
+
+#define Turn_on 1
+#define Turn_off 0
+
+
+#define SHOW_MENU 2
+#define EXIT_GAME_ 3
+#define PLAY_GAME 4
+#define SHOW_END_GAME 5
+#define SHOW_WIN_GAME 6
 
 #endif

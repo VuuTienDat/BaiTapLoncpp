@@ -33,7 +33,7 @@ void GameMap::LoadMap( char* name) {
 
 void GameMap::LoadTiles(SDL_Renderer* screen) {
       for (int i = 0; i < MAX_TILES; i++) {
-         std::string file_img = "map\\" + std::to_string(i) + ".png";
+         std::string file_img = "map2\\" + std::to_string(i) + ".png";
         const char* file_img_cstr = file_img.c_str();
         std::ifstream file(file_img);
 
@@ -55,17 +55,13 @@ void GameMap::DrawMap(SDL_Renderer* screen) {
     int map_x = 0;
     int map_y = 0;
 
-    map_x = game_map.start_x / TILE_SIZE;
+
     map_y = game_map.start_y / TILE_SIZE;
-    cerr << "start x " << game_map.start_x << endl;
-    cerr << "map_x " << map_x << " map_y " << map_y << endl;
 
     x1 = (game_map.start_x % TILE_SIZE) * (-1);
     x2 = x1 + SCREEN_WIDTH + (x1 == 0 ? 0 : TILE_SIZE);
     y1 = (game_map.start_y % TILE_SIZE) * (-1);
     y2 = y1 + SCREEN_HEIGHT + (y1 == 0 ? 0 : TILE_SIZE);
-    cerr << "x1:" << x1 << " x2:" << x2 << endl;
-    cerr << "y1 " << y1 << " y2:" << y2 << endl;
 
     for (int i = y1; i < y2; i += TILE_SIZE) {
 

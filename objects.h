@@ -7,9 +7,6 @@
 using namespace std;
 class objects
 {
-    public :
-   SDL_Texture* object;
-   SDL_Rect rect;
    public:
   objects(){
    object = NULL;
@@ -24,11 +21,16 @@ class objects
        rect.y= y;
 
    }
+  SDL_Rect get_rect(){return rect;}
   bool LoadImg(const char*s,SDL_Renderer *screen);
   void  Render(SDL_Renderer *des, const SDL_Rect* clip = NULL);
   void Freedom();
 
   ~objects(){Freedom();}
+   protected :
+
+   SDL_Texture* object;
+   SDL_Rect rect;
 
 
 };
