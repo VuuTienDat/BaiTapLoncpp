@@ -29,8 +29,6 @@ class Menu
 
     void Show_Win(SDL_Renderer *des,const int&);
     void Set_Render_Text_Number(SDL_Rect& rect_,const int& x ,TTF_Font* font ,SDL_Renderer* des);
-    void set_music(int x){check_music = x;}
-
 
 
 
