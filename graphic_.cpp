@@ -4,13 +4,13 @@ using namespace std;
 graphic_::graphic_()
 {
    heart = {64,4,0,0};
-   coins = {640,4,0,0};
+   coins = {640,1,0,0};
    marks = {200,0,0,0};
 
    font_1 =  loadFont("Font\\extra.ttf",30);
    color1 ={255,255,0,255};
    color2 = {255,255,255,255};
-   index_heart = {100,0,0,0};
+   index_heart = {110,0,0,0};
    index_coins={680,0,0,0};
    index_marks = {300,0,0,0};
 
@@ -87,7 +87,7 @@ void graphic_::Set_Render_Text(int x,  SDL_Rect& rect, TTF_Font* font, SDL_Rende
 void graphic_::set_up(SDL_Renderer* des)
 {
     Heart = loadImg("img\\Heart.png",heart,des);
-    Coins = loadImg("img\\coins.png",coins,des);
+    Coins = loadImg("img\\Coins2.png",coins,des);
 
     SDL_Surface* textSurface = TTF_RenderText_Solid( font_1,"Mark" , color2 );
     if( textSurface == nullptr ) {

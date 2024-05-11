@@ -31,7 +31,7 @@ typedef struct Map{
     int max_x;
     int max_y;
     int tile[MAX_MAP_Y][MAX_MAP_X];
-    char *file_name;
+    const char *file_name;
 
 };
 typedef struct Input{

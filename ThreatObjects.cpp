@@ -216,16 +216,7 @@ void ThreatObjects::CheckToMap(Map& map_data)
 
 
            }
-           else if( y_dy < 0)
-            {
-             int val1 = map_data.tile[y1][x1];
-             int val2 = map_data.tile[y1][x2];
-             if((val1!= BLANK_TILE && val1 != MONEY) || (val2 != BLANK_TILE && val2 != MONEY))
-                  {
-                      y_pos = (y1 + 1)*TILE_SIZE;
-                      y_dy  = 0;
-                  }
-            }
+
 
 
         x_pos += x_dx;
