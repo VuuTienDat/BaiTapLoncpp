@@ -599,10 +599,6 @@ void MainObject::Set_Moving_Map(Map &map_data)
 
      }
 
-     if(map_data.start_y < 0)
-     {
-         map_data.start_y =0;
-     }
 
 
 
@@ -618,7 +614,4 @@ void MainObject::Set_MapXY(int moving_x)
 
 
   }
-
-
-
 

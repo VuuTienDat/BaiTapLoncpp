@@ -2,7 +2,6 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include "defs.h"
-#include "logic.h"
 #include "game_map.h"
 #include "objects.h"
 #include "MainObjects.h"
@@ -26,13 +25,13 @@ using namespace std;
   SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY,"1");
   Window_ = SDL_CreateWindow("Game_project",SDL_WINDOWPOS_UNDEFINED
                              ,SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-  if(Window_== NULL){cerr << "Error Window" << endl;success = false;}
+  if(Window_== NULL){SDL_Log("Error Window\n");success = false;}
   else{
     Renderer_ = SDL_CreateRenderer(Window_,-1,SDL_RENDERER_ACCELERATED);
-    if(Renderer_== NULL){cerr << "Error Renderer_" << endl;success = false;}
+    if(Renderer_== NULL){SDL_Log("Error Renderer\n");success = false;}
     else{
 
-        if(!IMG_Init(IMG_INIT_PNG|IMG_INIT_JPG)){cerr << "Error PNG" << endl;success = false;}
+        if(!IMG_Init(IMG_INIT_PNG|IMG_INIT_JPG)){SDL_Log("Error IMG \n");success = false;}
 
     }
 
@@ -85,7 +84,7 @@ void close(){
           {
              p_threat_plus->LoadImg("img\\threat_left.png",Renderer_);
              p_threat_plus->set_clips();
-             p_threat_plus->set_x_pos(500 + 1200 * i );
+             p_threat_plus->set_x_pos(590 + 1200 * i );
              p_threat_plus->set_y_pos(250);
              const int vi_tri_1 = p_threat_plus->get_x_pos()-100;
              const int vi_tri_2 = p_threat_plus->get_x_pos()+100;
@@ -210,11 +209,10 @@ while(check){
                     if(threat != NULL)
                     {
 
-                        threat->Set_MapXY(Game_map.game_map.start_x,Game_map.game_map.start_y);
+                        threat->Set_MapXY(Game_map.game_map.start_x);
 
                         threat->doPlayer(Game_map.game_map);
                         threat->ImMoveType(Renderer_);
-
                         threat->Show(Renderer_);
 
 

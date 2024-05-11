@@ -31,7 +31,7 @@ class ThreatObjects : public objects
       void set_clips();
       void doPlayer(Map& map_data);
       void CheckToMap(Map& map_data);
-      void Set_MapXY(int map_x_, int map_y_);
+      void Set_MapXY(int map_x_);
       int get_width_frame()const{return width_frame;}
       int get_height_frame()const{return height_frame;}
 

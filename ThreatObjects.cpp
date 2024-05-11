@@ -52,7 +52,7 @@ void ThreatObjects::Show(SDL_Renderer* des)
      {
 
       rect.x = x_pos - map_x_ ;
-      rect.y = y_pos - map_y_ ;
+      rect.y = y_pos ;
 
       frame ++;
       if(frame >= 8){frame =0;}
@@ -100,7 +100,7 @@ void ThreatObjects::doPlayer(Map& map_data)
 
      CheckToMap(map_data);
 
-       x_pos += x_dx;
+
 
         if(input_type.left_ == 1)
        {
@@ -133,15 +133,12 @@ void ThreatObjects::CheckToMap(Map& map_data)
 {
 
 
-        int x1 = 0;
-        int x2 = 0;
-        int y1 = 0;
-        int y2 = 0;
+
         int height_min = (height_frame < TILE_SIZE)? height_frame : TILE_SIZE;
-        x1 = (x_pos + x_dx)/TILE_SIZE;
-        x2 = (x_pos + x_dx + width_frame -1)/TILE_SIZE;
-        y1 = (y_pos)/TILE_SIZE;
-        y2 = (y_pos + height_min -1)/TILE_SIZE;
+      int  x1 = (x_pos + x_dx)/TILE_SIZE;
+      int  x2 = (x_pos + x_dx + width_frame -1)/TILE_SIZE;
+      int  y1 = (y_pos)/TILE_SIZE;
+      int  y2 = (y_pos + height_min -1)/TILE_SIZE;
 
         if(x1 >= 0 && x2 < MAX_MAP_X && y1 >=0 && y2 < MAX_MAP_Y)
         {
@@ -161,7 +158,7 @@ void ThreatObjects::CheckToMap(Map& map_data)
 
                       if(input_type.right_ == 1)
                         pos_b = x_pos-2;
-                        pos_a = x_pos-50;
+                        pos_a = x_pos-300;
 
 
                    }
@@ -246,6 +243,7 @@ void ThreatObjects::CheckToMap(Map& map_data)
        {
            come_back_time = 1;
 
+
        }
 
 
@@ -256,10 +254,10 @@ void ThreatObjects::CheckToMap(Map& map_data)
 
 }
 
-void ThreatObjects::Set_MapXY(int map_x, int map_y)
+void ThreatObjects::Set_MapXY(int map_x)
 {
     map_x_ = map_x;
-    map_y_  = map_y;
+
 }
 void ThreatObjects::ImMoveType(SDL_Renderer* des)
 {
@@ -301,20 +299,32 @@ void ThreatObjects::initThreat()
 {
     x_dx=0;
     y_dy=0;
-    if(x_pos  > 256)
-    {
-        x_pos -= 128;
-        pos_a -= 128;
-        pos_b -= 128;
 
-    }
-    else
-    {
-       x_pos =0;
 
-    }
 
-    input_type.left_= 1;
+        if(x_pos  > 256)
+            {
+                x_pos -= 128;
+                pos_a -= 128;
+                pos_b -= 128;
+
+            }
+            else
+            {
+               x_pos =0;
+
+            }
+
+
+
+
+
+
+
+
+
+     y_pos = 0;
+
 
 }
 

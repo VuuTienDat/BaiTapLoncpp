@@ -11,7 +11,7 @@ BulletObjects::BulletObjects()
 
 BulletObjects::~BulletObjects()
 {
-
+    Freedom();
 }
 
 void BulletObjects::HandleMove(const int& x_border , const int& y_border)

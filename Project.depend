@@ -31,12 +31,11 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1715361834 source:d:\project_game\project\main.cpp
+1715408083 source:d:\project_game\project\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
-	"logic.h"
 	"game_map.h"
 	"objects.h"
 	"MainObjects.h"
@@ -80,14 +79,14 @@
 	<vector>
 	"BulletObjects.h"
 
-1715275119 source:d:\project_game\project\game_map.cpp
+1715369051 source:d:\project_game\project\game_map.cpp
 	<fstream>
 	"game_map.h"
 
 1713379353 source:d:\project_game\project\objects.cpp
 	"objects.h"
 
-1715348394 source:d:\project_game\project\mainobjects.cpp
+1715368491 source:d:\project_game\project\mainobjects.cpp
 	"MainObjects.h"
 
 1715357496 source:d:\project_game\project\menu.cpp
@@ -105,7 +104,7 @@
 1713674980 source:d:\project_game\project\imptimer.cpp
 	"ImpTimer.h"
 
-1715032614 source:d:\project_game\project\bulletobjects.cpp
+1715362701 source:d:\project_game\project\bulletobjects.cpp
 	"BulletObjects.h"
 	"objects.h"
 
@@ -113,10 +112,10 @@
 	"objects.h"
 	"defs.h"
 
-1715275563 source:d:\project_game\project\threatobjects.cpp
+1715406568 source:d:\project_game\project\threatobjects.cpp
 	"ThreatObjects.h"
 
-1715134577 d:\project_game\project\threatobjects.h
+1715406568 d:\project_game\project\threatobjects.h
 	"defs.h"
 	"objects.h"
 	"BulletObjects.h"
