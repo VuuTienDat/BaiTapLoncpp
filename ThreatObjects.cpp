@@ -30,7 +30,7 @@ ThreatObjects::ThreatObjects()
 
 ThreatObjects::~ThreatObjects()
 {
-    //dtor
+
 }
 
 bool ThreatObjects::LoadImg(const char* s, SDL_Renderer* screen)

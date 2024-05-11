@@ -58,14 +58,14 @@ void Menu::show(SDL_Renderer* des)
 
 }
 
-void Menu::HanldeInputAction1(SDL_Event event,int x , int y , int& n)
+void Menu::HanldeInputAction1(SDL_Event event,int x , int y , int& status)
 {
 
     if(Check_Focus_With_Rect(text_ord[Play_Game],x,y))
     {
      play_Chunk(ring);
      set_change_color(true,Play_Game);
-      if(event.type == SDL_MOUSEBUTTONDOWN){  n = 4;}
+      if(event.type == SDL_MOUSEBUTTONDOWN){  status = PLAY_GAME;}
     }
      else {set_change_color(false,Play_Game); }
 
@@ -74,7 +74,7 @@ void Menu::HanldeInputAction1(SDL_Event event,int x , int y , int& n)
     {
     play_Chunk(ring);
      set_change_color(true,Exit_Game);
-      if(event.type == SDL_MOUSEBUTTONDOWN){  n = 3;}
+      if(event.type == SDL_MOUSEBUTTONDOWN){  status = EXIT_GAME_;}
     }
      else {set_change_color(false,Exit_Game); }
 
@@ -100,13 +100,13 @@ void Menu::HanldeInputAction1(SDL_Event event,int x , int y , int& n)
 
 }
 
-  void Menu::HanldeInputAction2(SDL_Event event, int x, int y, int& n)
+  void Menu::HanldeInputAction2(SDL_Event event, int x, int y, int& status)
   {
      if(Check_Focus_With_Rect(text_ord[Play_Again],x,y))
     {
         play_Chunk(ring);
      set_change_color(true,Play_Again);
-      if(event.type == SDL_MOUSEBUTTONDOWN){ n = 2;}
+      if(event.type == SDL_MOUSEBUTTONDOWN){ status = SHOW_MENU;}
     }
      else {set_change_color(false,Play_Again); }
 
@@ -114,7 +114,7 @@ void Menu::HanldeInputAction1(SDL_Event event,int x , int y , int& n)
     {
         play_Chunk(ring);
      set_change_color(true,Exit_Game);
-      if(event.type == SDL_MOUSEBUTTONDOWN){ n = 3;}
+      if(event.type == SDL_MOUSEBUTTONDOWN){ status = EXIT_GAME_;}
     }
      else {set_change_color(false,Exit_Game); }
 
