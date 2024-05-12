@@ -1,49 +1,11 @@
 #include "Menu.h"
 Menu::Menu()
 {
-    for(int i = 0 ; i < 6 ; i++)
-    {
-        text_ord[i] ={0,0,0,0};
-        check_click[i] = false;
-
-    }
-    check_click[9] = false,check_click[10] = false;
-    text_ff[0] = "Play Game";
-    text_ff[1] = "Exit";
-    text_ff[2] = "Sound Mode";
-    text_ff[3] = "On";
-    text_ff[4] = "Off";
-    text_ff[5] = "Play Again";
-    text_ff[6] = "You Win";
-    text_ff[7] = "You Lose";
-    text_ff[8] = "Mark: ";
-    text_ff[9] ="Continue";
-    text_ff[10] = "Back";
-
-    color1 ={255,255,70,255};
-    color2 ={0 ,255, 255,255};
-    color_win={255,127,39,255};
-    color_lose={0,255,0,255};
-    Change_color = false;
-    check_music = Turn_off;
-    ring = loadSound("music\\beep_1.mp3");
-    font1 = loadFont("Font\\extra.ttf",60);
-    font2 = loadFont("Font\\extra.ttf",100);
-
-
-    index_mark={810,400,0,0};
-    text_ord[Mark_index]={480,400,0,0};
-    background ={0,0,1280,640};
-    pause ={1200,0,0,0};
-
-
-
-
-
 }
 
 Menu::~Menu()
 {
+
      Mix_FreeChunk(ring);
      ring = nullptr;
      TTF_CloseFont(font1);
@@ -52,14 +14,12 @@ Menu::~Menu()
      font2 = nullptr;
      SDL_DestroyTexture(back_ground);
      SDL_DestroyTexture(background_again);
-     SDL_DestroyTexture(paused_button_black);
-     SDL_DestroyTexture(paused_button_red);
+
      SDL_DestroyTexture(back_lose);
      SDL_DestroyTexture(back_win);
      back_ground = nullptr;
      background_again = nullptr;
-     paused_button_black = nullptr;
-     paused_button_red = nullptr;
+
      back_lose = nullptr;
      back_win = nullptr;
 
@@ -88,7 +48,7 @@ void Menu::HanldeInputAction1(SDL_Event event,int x , int y , int& status)
 
     if(Check_Focus_With_Rect(text_ord[Play_Game],x,y))
     {
-     play_Chunk(ring);
+
      set_change_color(true,Play_Game);
       if(event.type == SDL_MOUSEBUTTONDOWN){  status = PLAY_GAME;}
     }
@@ -97,7 +57,7 @@ void Menu::HanldeInputAction1(SDL_Event event,int x , int y , int& status)
 
      if(Check_Focus_With_Rect(text_ord[Exit_Game],x,y))
     {
-    play_Chunk(ring);
+
      set_change_color(true,Exit_Game);
       if(event.type == SDL_MOUSEBUTTONDOWN){  status = EXIT_GAME_;}
     }
@@ -167,15 +127,15 @@ void Menu::HanldeInputAction3(SDL_Event event, int x, int y, int& status)
          set_change_color(true,Back);
           if(event.type == SDL_MOUSEBUTTONDOWN){ status = SHOW_MENU;}
         }
-     else {set_change_color(false,Back); }
+            else {set_change_color(false,Back); }
 
-         if(Check_Focus_With_Rect(text_ord[Continue],x,y))
+     if(Check_Focus_With_Rect(text_ord[Continue],x,y))
         {
 
          set_change_color(true,Continue);
           if(event.type == SDL_MOUSEBUTTONDOWN){ status = PLAY_GAME;}
         }
-     else {set_change_color(false,Continue); }
+        else {set_change_color(false,Continue); }
 
 
 
@@ -192,6 +152,8 @@ void Menu::free()
 }
 void Menu::Show_Menu(SDL_Renderer* des)
 {
+
+
     SDL_RenderCopy(des,back_ground,NULL,NULL);
 
 
@@ -278,17 +240,10 @@ void Menu::Set_Rect_Coordinate(SDL_Rect& rect,int x, int y)
     rect.y =y;
 }
 
-bool Menu::Check_Focus_With_Rect(const SDL_Rect& rect, const int& x, const int& y)
-{
-    int posx1 = rect.x;
-    int posx2 = rect.x + rect.w;
-    int posy1 = rect.y;
-    int posy2 = rect.y + rect.h;
-    return x>=posx1 && x<=posx2&& y >= posy1 && y <= posy2;
 
-}
 void Menu::Show_EndGame(SDL_Renderer* des,const int &x)
 {
+
 
     SDL_RenderCopy(des,back_lose,NULL,NULL);
 
@@ -331,6 +286,7 @@ void Menu::Show_EndGame(SDL_Renderer* des,const int &x)
 
 void Menu::Show_Win(SDL_Renderer* des,const int& x)
 {
+
 
     SDL_RenderCopy(des,back_win,NULL,NULL);
 
@@ -402,6 +358,7 @@ void Menu::Set_Render_Text_Number(SDL_Rect& rect_,const int& x, TTF_Font* font, 
 
 void Menu::Show_Continue(SDL_Renderer* des)
 {
+
      SDL_RenderCopy(des,background_again,NULL,NULL);
 
 
@@ -437,26 +394,47 @@ void Menu :: Set_Menu(SDL_Renderer* des)
      back_ground= loadImg("img\\back_menu.jpg", background, des);
      back_lose=loadImg("img\\back_lose.jpg",background,des);
      back_win =loadImg("img\\back_win.jpg",background,des);
-     paused_button_black = loadImg("img\\Pause_black.png",pause,des);
-     paused_button_red = loadImg("img\\Pause_red.png",pause,des);
+
      background_again = loadImg("img\\back_continue.jpg",background,des);
 
  }
-void Menu:: Show_Pause_Button(SDL_Renderer *des,SDL_Event event , int x, int y, int& status)
-{
 
-    if(Check_Focus_With_Rect(pause,x,y))
-        {
+void Menu::set_up_Menu()
+  {
 
-            SDL_RenderCopy(des,paused_button_red,NULL,&pause);
-            if(event.type == SDL_MOUSEBUTTONDOWN)
-            {
-                status = SHOW_CONTINUE_GAME;
-            }
+         for(int i = 0 ; i < 6 ; i++)
+    {
+        text_ord[i] ={0,0,0,0};
+        check_click[i] = false;
 
-        }
-     else {SDL_RenderCopy(des,paused_button_black,NULL,&pause); }
+    }
+    check_click[9] = false,check_click[10] = false;
+    text_ff[0] = "Play Game";
+    text_ff[1] = "Exit";
+    text_ff[2] = "Sound Mode";
+    text_ff[3] = "On";
+    text_ff[4] = "Off";
+    text_ff[5] = "Play Again";
+    text_ff[6] = "You Win";
+    text_ff[7] = "You Lose";
+    text_ff[8] = "Mark: ";
+    text_ff[9] ="Continue";
+    text_ff[10] = "Back";
+
+    color1 ={255,255,70,255};
+    color2 ={0 ,255, 255,255};
+    color_win={255,127,39,255};
+    color_lose={0,255,0,255};
+    Change_color = false;
+    check_music = Turn_off;
+    ring = loadSound("music\\beep_1.mp3");
+    font1 = loadFont("Font\\extra.ttf",60);
+    font2 = loadFont("Font\\extra.ttf",100);
 
 
+    index_mark={810,400,0,0};
+    text_ord[Mark_index]={480,400,0,0};
+    background ={0,0,1280,640};
 
-}
+
+  }

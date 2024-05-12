@@ -41,6 +41,7 @@ class MainObject: public objects
       void set_play_again(){ check_win = false;}
      void set_x_dx(){x_dx= 0 ;}
      void set_y_pos(const int& y){ y_pos = y;}
+     void set_up_main();
 
 
       int get_money(){return count_money;}

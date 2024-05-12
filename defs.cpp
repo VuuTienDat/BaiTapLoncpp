@@ -164,7 +164,15 @@ if (top_a == top_b && right_a == right_b && bottom_a == bottom_b)
     }
 
 
+ bool Check_Focus_With_Rect(const SDL_Rect& rect, const int& x, const int& y)
+{
+    int posx1 = rect.x;
+    int posx2 = rect.x + rect.w;
+    int posy1 = rect.y;
+    int posy2 = rect.y + rect.h;
+    return x>=posx1 && x<=posx2&& y >= posy1 && y <= posy2;
 
+}
 
 
 

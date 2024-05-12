@@ -40,6 +40,8 @@ typedef struct Input{
   int jump_;
 };
 bool Check_Crash(const SDL_Rect &object1 ,const SDL_Rect &object2);
+bool Check_Focus_With_Rect(const SDL_Rect&, const int& , const int& );
+
 TTF_Font* loadFont(const char* path, int size);
 SDL_Texture* renderText(const char* text, TTF_Font* font, SDL_Color textColor,SDL_Renderer * des);
 Mix_Music *loadMusic(const char* path);

@@ -1,32 +1,6 @@
 #include "MainObjects.h"
 using namespace std;
  MainObject :: MainObject(){
-  frame = 0;
-  x_pos =0;
-  y_pos = 0;
-  x_dx  = 0;
-  y_dy = 0;
- width_frame = 0;
- height_frame = 0;
- status_move = -1;
- input_type.left_ =0;
- input_type.right_=0;
-
- input_type.jump_=0;
- on_ground = false;
- map_x_ =0;
- map_y_ =0;
-come_back_time =0;
-count_money = 0;
-check_drop = false;
-check_bullet= false;
-check_win = false;
-
-bell = loadSound("music\\beep_.wav");
-
-
-
-
 
  }
 
@@ -614,4 +588,29 @@ void MainObject::Set_MapXY(int moving_x)
 
 
   }
+void MainObject :: set_up_main()
+{
+        frame = 0;
+      x_pos =0;
+      y_pos = 0;
+      x_dx  = 0;
+      y_dy = 0;
+     width_frame = 0;
+     height_frame = 0;
+     status_move = -1;
+     input_type.left_ =0;
+     input_type.right_=0;
 
+     input_type.jump_=0;
+     on_ground = false;
+     map_x_ =0;
+     map_y_ =0;
+    come_back_time =0;
+    count_money = 0;
+    check_drop = false;
+    check_bullet= false;
+    check_win = false;
+
+    bell = loadSound("music\\beep_.wav");
+
+}

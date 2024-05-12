@@ -14,12 +14,15 @@ class graphic_
      void free();
      void set_up(SDL_Renderer* );
 
+     void Show_Pause_Button(SDL_Renderer* , SDL_Event, int , int , int& );
+
 
 
     private:
         SDL_Rect heart;
         SDL_Rect coins;
         SDL_Rect marks;
+         SDL_Rect pause;
 
         SDL_Rect index_heart;
         SDL_Rect index_coins;
@@ -30,6 +33,8 @@ class graphic_
         SDL_Texture* Coins = nullptr;
         SDL_Texture* Back_ground = nullptr;
         SDL_Texture* Mark_ = nullptr;
+        SDL_Texture* paused_button_black;
+        SDL_Texture* paused_button_red;
         TTF_Font *font_1 = nullptr;
         SDL_Color color1;
         SDL_Color color2;

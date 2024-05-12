@@ -17,40 +17,39 @@ using namespace std;
 
   objects g_background;
    bool InitData()
-
-{
-  bool success = true;
-  if(SDL_Init(SDL_INIT_VIDEO) !=0){return false;}
-
-  SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY,"1");
-  Window_ = SDL_CreateWindow("Game_project",SDL_WINDOWPOS_UNDEFINED
-                             ,SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-  if(Window_== NULL){SDL_Log("Error Window\n");success = false;}
-  else{
-    Renderer_ = SDL_CreateRenderer(Window_,-1,SDL_RENDERER_ACCELERATED);
-    if(Renderer_== NULL){SDL_Log("Error Renderer\n");success = false;}
-    else{
-
-        if(!IMG_Init(IMG_INIT_PNG|IMG_INIT_JPG)){SDL_Log("Error IMG \n");success = false;}
-
-    }
-
-  }
-
- if (TTF_Init() != 0)
-    {
-       SDL_Log("Loi khoi tao TTF");
-    }
-
- if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) != 0 )
         {
-            SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,SDL_LOG_PRIORITY_ERROR, "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+          bool success = true;
+          if(SDL_Init(SDL_INIT_VIDEO) !=0){return false;}
+
+          SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY,"1");
+          Window_ = SDL_CreateWindow("Game_project",SDL_WINDOWPOS_UNDEFINED
+                                     ,SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+          if(Window_== NULL){SDL_Log("Error Window\n");success = false;}
+          else{
+            Renderer_ = SDL_CreateRenderer(Window_,-1,SDL_RENDERER_ACCELERATED);
+            if(Renderer_== NULL){SDL_Log("Error Renderer\n");success = false;}
+            else{
+
+                if(!IMG_Init(IMG_INIT_PNG|IMG_INIT_JPG)){SDL_Log("Error IMG \n");success = false;}
+
+            }
+
+          }
+
+         if (TTF_Init() != 0)
+            {
+               SDL_Log("Loi khoi tao TTF");
+            }
+
+         if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) != 0 )
+                {
+                    SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,SDL_LOG_PRIORITY_ERROR, "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+                }
+
+
+
+          return success;
         }
-
-
-
-  return success;
-}
 
 
 
@@ -60,19 +59,7 @@ bool loadBackground()
   if(ret == false){return false;}
    return true;
 }
-void close(){
- g_background.Freedom();
- SDL_DestroyRenderer(Renderer_);
- Renderer_= NULL;
- SDL_DestroyWindow(Window_);
- Window_ = NULL;
 
- IMG_Quit();
- SDL_Quit();
- TTF_Quit();
- Mix_Quit();
-
-}
  vector <ThreatObjects*> Make_threat_list()
     {
        vector <ThreatObjects*> list_threat;
@@ -86,8 +73,8 @@ void close(){
              p_threat_plus->set_clips();
              p_threat_plus->set_x_pos(590 + 1200 * i );
              p_threat_plus->set_y_pos(250);
-             const int vi_tri_1 = p_threat_plus->get_x_pos()-100;
-             const int vi_tri_2 = p_threat_plus->get_x_pos()+100;
+             const int vi_tri_1 = p_threat_plus->get_x_pos()-90;
+             const int vi_tri_2 = p_threat_plus->get_x_pos()+90;
              p_threat_plus->setAnimationPos(vi_tri_1,vi_tri_2);
 
 
@@ -103,60 +90,153 @@ void close(){
        }
        return list_threat;
     }
+ MainObject player;
+
+ Menu menu;
+
+ graphic_ index;
+
+ GameMap Game_map;
+
+ Exploitation_objects exploit;
+ ;
+
+  vector <ThreatObjects*> threat_list;
 
 
-int main(int argc, char *argv[]) {
-   ImpTimer fps;
-   if(!InitData()){cerr <<"Loi 1\n";}
-   if(!loadBackground()){cerr << "Loi 2\n";}
-      Mix_Music *BackGround = loadMusic("music\\backsound.mp3");
-      Mix_Music *Music_Game = loadMusic("music\\playmusic.mid");
-      Mix_Music *Music_win =loadMusic("music\\music_win.mp3");
-      Mix_Music *Music_Lose =loadMusic("music\\music_lose.mp3");
-      Mix_Chunk *Bomer = loadSound("music\\Bomb2.wav");
-      Mix_Chunk* Bomer1 = loadSound("music\\Bomb1.wav");
-      Mix_Chunk *Fire = loadSound("music\\Fire1.wav");
-      Mix_Chunk *ring = loadSound("music\\beep_.wav");
-      Mix_Chunk *drop = loadSound("music\\drop.wav");
-
-
-
-   MainObject player;
-   player.LoadImg("img\\player_right.png",Renderer_);
-   player.set_clips();
-    GameMap Game_map;
-    Game_map.LoadMap("map2\\map01.dat");
-    Game_map.LoadTiles(Renderer_);
-    vector <ThreatObjects*> threat_list = Make_threat_list();
-  Exploitation_objects exploit ;
-  exploit.LoadImg("img\\exploit.png",Renderer_);
-  exploit.set_clips();
-  Menu menu;
-  menu.Set_Menu(Renderer_);
-
-   graphic_ index;
-   index.set_up(Renderer_);
+      Mix_Music *Music_Game = nullptr;
+      Mix_Chunk *Bomer = nullptr;
+      Mix_Chunk* Bomer1 = nullptr;
+      Mix_Chunk *Fire = nullptr;
+      Mix_Chunk *drop = nullptr;
+       Mix_Music *BackGround = nullptr;
+      Mix_Music *Music_win = nullptr;
+      Mix_Music *Music_Lose = nullptr;
 
 
 
 
 
-  bool check = true;
 
-    int x,y;
+void set_up_sound()
+    {
+      BackGround = loadMusic("music\\backsound.mp3");
+     Music_win =loadMusic("music\\music_win.mp3");
+     Music_Lose =loadMusic("music\\music_lose.mp3");
+
+
+      Music_Game = loadMusic("music\\playmusic.mid");
+      Bomer = loadSound("music\\Bomb2.wav");
+      Bomer1 = loadSound("music\\Bomb1.wav");
+      Fire = loadSound("music\\Fire1.wav");
+      drop = loadSound("music\\Drop.wav");
+
+
+    }
     int Heart =3;
     int Coins = 0;
     int mark_threat = 0;
     int mark_ = 0;
 
+
+
+
+  void set_up()
+    {
+        index.set_up(Renderer_);
+        player.set_up_main();
+        player.LoadImg("img\\player_right.png",Renderer_);
+        player.set_clips();
+        Game_map.LoadMap("map2\\map01.dat");
+        Game_map.LoadTiles(Renderer_);
+        Game_map.LoadMap("map2\\map01.dat");
+        exploit.LoadImg("img\\exploit.png",Renderer_);
+        exploit.set_clips();
+        threat_list = Make_threat_list();
+        player.set_x_pos(0);
+        player.set_y_pos(0);
+        Game_map.set_start_x(0);
+        Heart = 3;
+        Coins = 0;
+        mark_ = 0;
+        mark_threat = 0;
+        player.set_money();
+        player.set_x_dx();
+
+
+
+    }
+   void set_up_Menu()
+     {
+        menu.set_up_Menu();
+        menu.Set_Menu(Renderer_);
+     }
+  void close_object()
+  {
+      index.~graphic_();
+      player.Freedom();
+      exploit.Freedom();
+      threat_list.clear();
+
+  }
+
+
+void close_all(){
+      index.~graphic_();
+      player.Freedom();
+      for(int i = 0; i < threat_list.size();i++)
+          {
+              if(threat_list[i] != nullptr)
+              {
+                  threat_list[i]->Freedom();
+
+              }
+          }
+
+      exploit.Freedom();
+
+     g_background.Freedom();
+     Mix_FreeMusic(Music_Game);
+     Music_Game = nullptr;
+     Mix_FreeChunk(Bomer);
+     Bomer= nullptr;
+     Mix_FreeChunk(Bomer1);
+     Bomer1 = nullptr;
+     Mix_FreeChunk(Fire);
+     Fire =nullptr;
+     Mix_FreeChunk(drop);
+     drop = nullptr;
+     Mix_FreeMusic(BackGround);
+     Mix_FreeMusic(Music_win);
+     Mix_FreeMusic(Music_Lose);
+     BackGround = nullptr;
+     Music_win = nullptr;
+     Music_Lose = nullptr;
+
+
+     menu.~Menu();
+     index.~graphic_();
+
+    }
+int main(int argc, char *argv[]) {
+   ImpTimer fps;
+   if(!InitData()){cerr <<"Loi 1\n";}
+   if(!loadBackground()){cerr << "Loi 2\n";}
+   bool check = true;
+   set_up_Menu();
+   set_up_sound();
+  int check_music ;
+
+
+   int x,y;
+
 int  status = SHOW_MENU;
 while(check){
     SDL_PollEvent(&Event_);
 
-    if(Event_.type== SDL_QUIT){close(); break;}
+    if(Event_.type== SDL_QUIT){check = false; break;}
   if(status == SHOW_MENU)
   {
-
      play_Music(BackGround,Turn_on);
      SDL_RenderClear(Renderer_);
      menu.Show_Menu(Renderer_);
@@ -164,51 +244,31 @@ while(check){
      menu.HanldeInputAction1(Event_,x,y,status);
 
      if(status == PLAY_GAME){
-            cerr << 1 << endl;
+
+            set_up();
             play_Music(BackGround,Turn_off);
-            cerr << 2 << endl;
-            threat_list.clear();
-            threat_list = Make_threat_list();
-            cerr << 3 << endl;
-            player.set_x_pos(0);
-            cerr << 4 << endl;
-            player.set_y_pos(0);
-            cerr << 5 << endl;
-            Game_map.set_start_x(0);
-            cerr << 6 << endl;
-            Heart = 3;
-            Coins = 0;
-            mark_ = 0;
-            mark_threat = 0;
-            player.set_money();
-            player.set_x_dx();
-
-
-            Game_map.LoadMap("map2\\map01.dat");
 
             }
-
+     if(status == EXIT_GAME_){close_all();}
      SDL_RenderPresent(Renderer_);
 
 
 
   }
- else if(status == EXIT_GAME_){check = false;break;}
+ else if(status == EXIT_GAME_){ check = false;break;}
 
   else if(status == PLAY_GAME){
 
-          play_Music(Music_Game,menu.check_music_());
+               play_Music(Music_Game,menu.check_music_());
+             check_music=menu.check_music_();
 
                 SDL_RenderClear(Renderer_);
 
                 g_background.Render(Renderer_,NULL);
                 index.Show_(Renderer_, Heart,Coins,mark_);
                 SDL_GetMouseState(&x,&y);
-                 menu.Show_Pause_Button(Renderer_,Event_,x,y,status);
-                 if(status ==SHOW_CONTINUE_GAME)
-                 {
-                     play_Music(Music_Game,Turn_off);
-                 }
+                index.Show_Pause_Button(Renderer_,Event_,x,y,status);
+
 
                  Coins = player.get_money();
                  mark_ =Coins + mark_threat;
@@ -251,7 +311,10 @@ while(check){
                   if(Heart == 0 )
                   {
                         play_Music(Music_Game,Turn_off);
+                        close_object();
+
                         status = SHOW_END_GAME;
+
 
 
                   }
@@ -297,6 +360,8 @@ while(check){
                           {
                             play_Music(Music_Game,Turn_off);
                             status = SHOW_END_GAME;
+                            close_object();
+
 
 
                           }
@@ -354,6 +419,8 @@ while(check){
                 if(player.get_check_win() == true){
                         play_Music(Music_Game,Turn_off);
                         status= SHOW_WIN_GAME;
+                        close_object();
+
                 }
 
 
@@ -382,8 +449,9 @@ while(check){
              menu.Show_EndGame(Renderer_,mark_);
              SDL_GetMouseState(&x,&y);
              menu.HanldeInputAction2(Event_,x,y,status);
-              if(status == SHOW_MENU)
-                {play_Music(Music_Lose,Turn_off);}
+             if(status == SHOW_MENU){play_Music(Music_Lose,Turn_off);}
+             if(status == EXIT_GAME_){close_all();}
+
 
 
 
@@ -405,8 +473,8 @@ while(check){
              SDL_GetMouseState(&x,&y);
              menu.HanldeInputAction2(Event_,x,y,status);
              if(status == SHOW_MENU)
-                {player.set_play_again(); play_Music(Music_win,Turn_off);}
-
+                {player.set_play_again(); play_Music(Music_win,Turn_off); }
+             if(status == EXIT_GAME_){close_all();}
              SDL_RenderPresent(Renderer_);
 
 
@@ -415,78 +483,38 @@ while(check){
   else if(status == SHOW_CONTINUE_GAME)
   {
       SDL_RenderClear(Renderer_);
-      SDL_GetMouseState(&x,&y);
+
       menu.Show_Continue(Renderer_);
+
+      SDL_GetMouseState(&x,&y);
+
       menu.HanldeInputAction3(Event_,x,y,status);
+      if(status == SHOW_MENU)
+      {
+          play_Music(Music_Game,Turn_off);
+          close_object();
+
+      }
+
 
       SDL_RenderPresent(Renderer_);
+
 
   }
 
 
 }
-  for(int i = 0; i < threat_list.size();i++)
-  {
-      if(threat_list[i] != nullptr)
-      {
-          threat_list[i]->Freedom();
 
-      }
-  }
- threat_list.clear();
-
-  if(BackGround != nullptr)
-  {
-      Mix_FreeMusic(BackGround);
-      BackGround = nullptr;
-  }
-   if(Music_win != nullptr)
-  {
-      Mix_FreeMusic(Music_win);
-      Music_win= nullptr;
-  }
-   if(Music_Lose != nullptr)
-  {
-      Mix_FreeMusic(Music_Lose);
-      Music_Lose = nullptr;
-  }
-  if(Bomer1!= nullptr)
-  {
-      Mix_FreeChunk(Bomer1);
-      Bomer1 = nullptr;
-
-  }
-   if(Bomer!= nullptr)
-  {
-      Mix_FreeChunk(Bomer);
-      Bomer = nullptr;
-
-  }
-   if(Fire!= nullptr)
-  {
-      Mix_FreeChunk(Fire);
-      Fire = nullptr;
-
-  }
-  if(ring!= nullptr)
-  {
-      Mix_FreeChunk(ring);
-      ring = nullptr;
-
-  }
-   if(drop!= nullptr)
-  {
-      Mix_FreeChunk(drop);
-      drop = nullptr;
-
-  }
-
-  menu.free();
-  player.Freedom();
+   SDL_DestroyRenderer(Renderer_);
+     Renderer_= NULL;
+     SDL_DestroyWindow(Window_);
+     Window_ = NULL;
+     IMG_Quit();
+     SDL_Quit();
+     TTF_Quit();
+     Mix_Quit();
 
 
-
-  close();
 
 
 

@@ -24,7 +24,7 @@ class Menu
 
     void free();
 
-    bool Check_Focus_With_Rect(const SDL_Rect&, const int& , const int& );
+
     bool set_change_color(bool change, int x){check_click[x] = change;}
 
     int check_music_(){return check_music;}
@@ -33,9 +33,9 @@ class Menu
     void Show_Win(SDL_Renderer *des,const int&);
     void Set_Render_Text_Number(SDL_Rect& rect_,const int& x ,TTF_Font* font ,SDL_Renderer* des);
     void Set_Menu(SDL_Renderer*);
-
     void Show_Continue(SDL_Renderer* des);
-    void Show_Pause_Button(SDL_Renderer* , SDL_Event, int , int , int& );
+
+    void set_up_Menu();
 
 
 
@@ -47,7 +47,7 @@ class Menu
 
      SDL_Rect index_mark;
      SDL_Rect background;
-     SDL_Rect pause;
+
 
 
      string text_ff[11];
@@ -56,8 +56,7 @@ class Menu
     SDL_Texture* back_win;
     SDL_Texture* back_lose;
 
-    SDL_Texture* paused_button_black;
-    SDL_Texture* paused_button_red;
+
 
     SDL_Texture* background_again;
 
@@ -71,7 +70,6 @@ class Menu
     Mix_Chunk* ring = nullptr;
     TTF_Font* font1 =nullptr;
     TTF_Font* font2 = nullptr;
-    bool check_one;
 
 
 
