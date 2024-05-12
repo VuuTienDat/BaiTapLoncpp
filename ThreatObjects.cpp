@@ -134,11 +134,11 @@ void ThreatObjects::CheckToMap(Map& map_data)
 
 
 
-        int height_min = (height_frame < TILE_SIZE)? height_frame : TILE_SIZE;
+
       int  x1 = (x_pos + x_dx)/TILE_SIZE;
-      int  x2 = (x_pos + x_dx + width_frame -1)/TILE_SIZE;
+      int  x2 = (x_pos + x_dx + width_frame )/TILE_SIZE;
       int  y1 = (y_pos)/TILE_SIZE;
-      int  y2 = (y_pos + height_min -1)/TILE_SIZE;
+      int  y2 = (y_pos + height_frame)/TILE_SIZE;
 
         if(x1 >= 0 && x2 < MAX_MAP_X && y1 >=0 && y2 < MAX_MAP_Y)
         {
@@ -193,11 +193,11 @@ void ThreatObjects::CheckToMap(Map& map_data)
         }
 
 
-      int width_min = width_frame < TILE_SIZE ? width_frame : TILE_SIZE;
+
       x1 = (x_pos )/TILE_SIZE;
-      x2 = (x_pos + width_min)/TILE_SIZE;
+      x2 = (x_pos + width_frame)/TILE_SIZE;
       y1 = (y_pos + y_dy)/TILE_SIZE;
-      y2 = (y_pos + y_dy + height_frame - 1)/TILE_SIZE;
+      y2 = (y_pos + y_dy + height_frame )/TILE_SIZE;
 
         if(x1 >=0 && x2 < MAX_MAP_X && y1 >=0 && y2 <= MAX_MAP_Y)
         {

@@ -39,11 +39,26 @@ void MainObject::set_clips()
   {
       if(status_move == WALK_LEFT)
       {
-         LoadImg("img\\player_left.png",des);
+         if(on_ground == false)
+            {
+                LoadImg("img\\jump_left.png",des);
+
+            }
+            else {
+                LoadImg("img\\player_left.png",des);
+            }
 
       }
       else{
-        LoadImg("img\\player_right.png",des);
+         if(on_ground == false)
+            {
+                LoadImg("img\\jump_right.png",des);
+
+            }
+            else {
+                LoadImg("img\\player_right.png",des);
+            }
+
 
       }
       if(input_type.left_ == 1 || input_type.right_== 1)
@@ -79,10 +94,9 @@ void MainObject::set_clips()
                 case SDLK_RIGHT:
                     {
                         status_move = WALK_RIGHT;
-
-
                         input_type.right_ = 1;
                         input_type.left_  = 0;
+
 
 
                     }
@@ -140,29 +154,29 @@ void MainObject::set_clips()
           else if(events.type == SDL_KEYUP)
           {
                 switch(events.key.keysym.sym)
-           {
-                case SDLK_RIGHT:
-                    {
+                   {
+                        case SDLK_RIGHT:
+                            {
 
-                        input_type.right_ = 0;
-
-
-                    }
-                    break;
-                case SDLK_LEFT:
-                    {
-
-                        input_type.left_ = 0;
-
-                    }
-                    break;
-                case SDLK_SPACE:
-                    {
-                        check_bullet = false;
-                    }
+                                input_type.right_ = 0;
 
 
-           }
+                            }
+                            break;
+                        case SDLK_LEFT:
+                            {
+
+                                input_type.left_ = 0;
+
+                            }
+                            break;
+                        case SDLK_SPACE:
+                            {
+                                check_bullet = false;
+                            }
+
+
+                   }
 
 
 
@@ -252,23 +266,29 @@ void MainObject::set_clips()
       check_drop = false;
     x_dx =  0;
     y_dy += GRAVITY_SPEED;
+
+
     if(y_dy > MAX_FALL_SPEED){
         y_dy = MAX_FALL_SPEED;
     }
+
     if(input_type.left_ == 1)
-    {
-        x_dx -= PLAYER_SPEED;
-    }
+        {
+            x_dx -= PLAYER_SPEED;
+
+
+        }
     if(input_type.right_ == 1)
-    {
-        x_dx += PLAYER_SPEED;
-    }
+        {
+            x_dx += PLAYER_SPEED;
+        }
     if(input_type.jump_ == 1)
     {
       if(on_ground == true)
          {
-               y_dy = - 70 ;
+               y_dy = -70 ;
          }
+
         on_ground = false;
         input_type.jump_=0;
 
@@ -314,11 +334,11 @@ void MainObject::CheckToMap(Map& map_data)
         int x2 = 0;
         int y1 = 0;
         int y2 = 0;
-        int height_min = (height_frame < TILE_SIZE)? height_frame : TILE_SIZE;
+
         x1 = (x_pos + x_dx)/TILE_SIZE;
-        x2 = (x_pos + x_dx + width_frame -1)/TILE_SIZE;
+        x2 = (x_pos + x_dx + width_frame )/TILE_SIZE;
         y1 = (y_pos)/TILE_SIZE;
-        y2 = (y_pos + height_min -1)/TILE_SIZE;
+        y2 = (y_pos + TILE_SIZE)/TILE_SIZE;
 
         if(x1 >= 0 && x2 < MAX_MAP_X && y1 >=0 && y2 < MAX_MAP_Y)
         {
@@ -343,17 +363,12 @@ void MainObject::CheckToMap(Map& map_data)
                        play_Chunk(bell);
                        map_data.tile[y1][x2] =0;
                        count_money++;
-
-
-
-
                    }
                else if(val2 == MONEY)
                  {
                       play_Chunk(bell);
                       map_data.tile[y2][x2] =0;
                       count_money++;
-
                  }
 
                else
@@ -361,7 +376,7 @@ void MainObject::CheckToMap(Map& map_data)
                   if(val1 != BLANK_TILE || val2!= BLANK_TILE)
                    {
                      x_pos = x2 * TILE_SIZE;
-                     x_pos  -= width_frame +1;
+                     x_pos  -= width_frame +1 ;
                      x_dx  = 0;
 
                    }
@@ -424,11 +439,11 @@ void MainObject::CheckToMap(Map& map_data)
         }
 
 
-      int width_min = width_frame < TILE_SIZE ? width_frame : TILE_SIZE;
+
       x1 = (x_pos )/TILE_SIZE;
-      x2 = (x_pos + width_min)/TILE_SIZE;
+      x2 = (x_pos + width_frame)/TILE_SIZE;
       y1 = (y_pos + y_dy)/TILE_SIZE;
-      y2 = (y_pos + y_dy + height_frame - 1)/TILE_SIZE;
+      y2 = (y_pos + y_dy + height_frame )/TILE_SIZE;
 
         if(x1 >=0 && x2 < MAX_MAP_X && y1 >=0 && y2 <= MAX_MAP_Y)
         {
@@ -449,11 +464,6 @@ void MainObject::CheckToMap(Map& map_data)
                        play_Chunk(bell);
                        map_data.tile[y2][x1] =0;
                        count_money++;
-
-
-
-
-
                    }
                else if(val2 == MONEY)
                  {
@@ -462,10 +472,6 @@ void MainObject::CheckToMap(Map& map_data)
                       count_money++;
 
                  }
-
-
-
-
 
             else
             {
@@ -476,6 +482,7 @@ void MainObject::CheckToMap(Map& map_data)
                       y_pos -= (height_frame + 1);
                       y_dy = 0;
                       on_ground = true;
+
 
                 }
             }
@@ -534,6 +541,9 @@ void MainObject::CheckToMap(Map& map_data)
 
        x_pos += x_dx;
        y_pos += y_dy;
+
+
+
        if(x_pos < 0)
        {
            x_pos=0;
@@ -551,8 +561,6 @@ void MainObject::CheckToMap(Map& map_data)
        {
            come_back_time = 1;
            check_drop = true;
-
-
        }
 
 
