@@ -358,9 +358,10 @@ while(check){
 
                           if(Heart == 0 )
                           {
+                            close_object();
                             play_Music(Music_Game,Turn_off);
                             status = SHOW_END_GAME;
-                            close_object();
+
 
 
 
