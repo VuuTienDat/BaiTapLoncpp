@@ -176,7 +176,12 @@ void set_up_sound()
       index.~graphic_();
       player.Freedom();
       exploit.Freedom();
-      threat_list.clear();
+     for(int i = 0 ; i < threat_list.size(); i++)
+     {
+       threat_list[i]->Freedom();
+        threat_list.erase(threat_list.begin() + i);
+
+     }
 
   }
 
