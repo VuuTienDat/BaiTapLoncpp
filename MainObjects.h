@@ -40,6 +40,7 @@ class MainObject: public objects
       void set_x_pos(const int& x){x_pos = x;}
       void set_play_again(){ check_win = false;}
      void set_x_dx(){x_dx= 0 ;}
+     void set_y_pos(const int& y){ y_pos = y;}
 
 
       int get_money(){return count_money;}

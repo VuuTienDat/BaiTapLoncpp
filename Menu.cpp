@@ -7,6 +7,7 @@ Menu::Menu()
         check_click[i] = false;
 
     }
+    check_click[9] = false,check_click[10] = false;
     text_ff[0] = "Play Game";
     text_ff[1] = "Exit";
     text_ff[2] = "Sound Mode";
@@ -16,11 +17,13 @@ Menu::Menu()
     text_ff[6] = "You Win";
     text_ff[7] = "You Lose";
     text_ff[8] = "Mark: ";
+    text_ff[9] ="Continue";
+    text_ff[10] = "Back";
 
     color1 ={255,255,70,255};
     color2 ={0 ,255, 255,255};
-    color_win={255,0,0,255};
-    color_lose={255,127,39,255};
+    color_win={255,127,39,255};
+    color_lose={0,255,0,255};
     Change_color = false;
     check_music = Turn_off;
     ring = loadSound("music\\beep_1.mp3");
@@ -30,6 +33,12 @@ Menu::Menu()
 
     index_mark={810,400,0,0};
     text_ord[Mark_index]={480,400,0,0};
+    background ={0,0,1280,640};
+    pause ={1200,0,0,0};
+
+
+
+
 
 }
 
@@ -41,22 +50,38 @@ Menu::~Menu()
      font1 = nullptr;
      TTF_CloseFont(font2);
      font2 = nullptr;
+     SDL_DestroyTexture(back_ground);
+     SDL_DestroyTexture(background_again);
+     SDL_DestroyTexture(paused_button_black);
+     SDL_DestroyTexture(paused_button_red);
+     SDL_DestroyTexture(back_lose);
+     SDL_DestroyTexture(back_win);
+     back_ground = nullptr;
+     background_again = nullptr;
+     paused_button_black = nullptr;
+     paused_button_red = nullptr;
+     back_lose = nullptr;
+     back_win = nullptr;
+
+
+
 }
 
-bool Menu::load_Img(const char* s, SDL_Renderer* des)
+SDL_Texture* Menu::loadImg(const char* s,SDL_Rect& rect, SDL_Renderer* des)
 {
-    free();
-    obj = IMG_LoadTexture(des,s);
-    if(obj != NULL){
-        return true;
-    }
-    return false;
+
+    SDL_Surface* img = IMG_Load(s);
+    if(img == nullptr ){SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,SDL_LOG_PRIORITY_ERROR,"Loi khoi tao %s\n",IMG_GetError()); return nullptr;}
+    rect.w = img->w;
+    rect.h = img->h;
+    SDL_Texture* obj = SDL_CreateTextureFromSurface(des,img);
+    if(obj == nullptr){SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,SDL_LOG_PRIORITY_ERROR,"Loi khoi tao %s\n",SDL_GetError()); return nullptr; }
+    SDL_FreeSurface(img);
+
+    return obj;
 }
 
-void Menu::show(SDL_Renderer* des)
-{
 
-}
 
 void Menu::HanldeInputAction1(SDL_Event event,int x , int y , int& status)
 {
@@ -78,6 +103,8 @@ void Menu::HanldeInputAction1(SDL_Event event,int x , int y , int& status)
     }
      else {set_change_color(false,Exit_Game); }
 
+   if(check_music == Turn_off)
+   {
 
       if(Check_Focus_With_Rect(text_ord[On],x,y))
     {
@@ -88,13 +115,22 @@ void Menu::HanldeInputAction1(SDL_Event event,int x , int y , int& status)
      else {set_change_color(false,On); }
 
 
-      if(Check_Focus_With_Rect(text_ord[Off],x,y))
+
+   }
+
+  else if(check_music == Turn_on)
+    {
+          if(Check_Focus_With_Rect(text_ord[Off],x,y))
     {
 
      set_change_color(true,Off);
       if(event.type == SDL_MOUSEBUTTONDOWN){ play_Chunk(ring);check_music = Turn_off;}
     }
      else {set_change_color(false,Off); }
+
+
+
+    }
 
 
 
@@ -121,26 +157,45 @@ void Menu::HanldeInputAction1(SDL_Event event,int x , int y , int& status)
 
 
   }
+void Menu::HanldeInputAction3(SDL_Event event, int x, int y, int& status)
+  {
+
+
+       if(Check_Focus_With_Rect(text_ord[Back],x,y))
+        {
+
+         set_change_color(true,Back);
+          if(event.type == SDL_MOUSEBUTTONDOWN){ status = SHOW_MENU;}
+        }
+     else {set_change_color(false,Back); }
+
+         if(Check_Focus_With_Rect(text_ord[Continue],x,y))
+        {
+
+         set_change_color(true,Continue);
+          if(event.type == SDL_MOUSEBUTTONDOWN){ status = PLAY_GAME;}
+        }
+     else {set_change_color(false,Continue); }
+
+
+
+  }
+
+
 
 
 
 
 void Menu::free()
 {
-    if(obj != NULL)
-    {
-        SDL_DestroyTexture(obj);
-        obj = nullptr;
 
-
-    }
 }
 void Menu::Show_Menu(SDL_Renderer* des)
 {
-    SDL_RenderCopy(des,obj,NULL,NULL);
+    SDL_RenderCopy(des,back_ground,NULL,NULL);
 
 
-    for(int i =0 ; i <= 4 ; i++)
+    for(int i =0 ; i <= 2 ; i++)
     {
 
 
@@ -156,8 +211,32 @@ void Menu::Show_Menu(SDL_Renderer* des)
       }
 
     }
+    if(check_music == Turn_off)
+    {
 
+            Set_Rect_Coordinate(text_ord[On], 480, 150 + text_ord[On].h *3 );
+         if(check_click[On] == false)
+         {
+            Set_Render_Text(text_ff[On].c_str(),text_ord[On],font1,des,color1);
+         }
+          else{
 
+            Set_Render_Text(text_ff[On].c_str(),text_ord[On],font1,des,color2);
+        }
+    }
+    else if(check_music == Turn_on)
+    {
+
+            Set_Rect_Coordinate(text_ord[Off], 480, 150 + text_ord[Off].h *3 );
+         if(check_click[Off] == false)
+         {
+            Set_Render_Text(text_ff[Off].c_str(),text_ord[Off],font1,des,color1);
+         }
+          else{
+
+            Set_Render_Text(text_ff[Off].c_str(),text_ord[Off],font1,des,color2);
+        }
+    }
 
 
 
@@ -211,7 +290,7 @@ bool Menu::Check_Focus_With_Rect(const SDL_Rect& rect, const int& x, const int& 
 void Menu::Show_EndGame(SDL_Renderer* des,const int &x)
 {
 
-    SDL_RenderCopy(des,obj,NULL,NULL);
+    SDL_RenderCopy(des,back_lose,NULL,NULL);
 
 
 
@@ -220,7 +299,7 @@ void Menu::Show_EndGame(SDL_Renderer* des,const int &x)
 
 
 
-    Set_Render_Text(text_ff[Mark_index].c_str(),text_ord[Mark_index],font2,des,color_lose);
+    Set_Render_Text(text_ff[Mark_index].c_str(),text_ord[Mark_index],font2,des,color_win);
 
     Set_Render_Text_Number(index_mark,x,font2,des);
 
@@ -253,13 +332,13 @@ void Menu::Show_EndGame(SDL_Renderer* des,const int &x)
 void Menu::Show_Win(SDL_Renderer* des,const int& x)
 {
 
-    SDL_RenderCopy(des,obj,NULL,NULL);
+    SDL_RenderCopy(des,back_win,NULL,NULL);
 
-    Set_Rect_Coordinate(text_ord[Win_Game], 450, 100 );
+    Set_Rect_Coordinate(text_ord[Win_Game], 480, 100 );
     Set_Render_Text(text_ff[Win_Game].c_str(),text_ord[Win_Game],font2,des,color_win);
 
-    Set_Rect_Coordinate(text_ord[Mark_index], 400, 400 );
-    Set_Render_Text(text_ff[Mark_index].c_str(),text_ord[Mark_index],font2,des,color_lose);
+
+    Set_Render_Text(text_ff[Mark_index].c_str(),text_ord[Mark_index],font2,des,color_win);
 
     Set_Render_Text_Number(index_mark,x,font2,des);
 
@@ -298,7 +377,7 @@ void Menu::Set_Render_Text_Number(SDL_Rect& rect_,const int& x, TTF_Font* font, 
 {
        string m = to_string(x);
 
-       SDL_Surface* textSurface = TTF_RenderText_Solid( font, m.c_str(),color_lose);
+       SDL_Surface* textSurface = TTF_RenderText_Solid( font, m.c_str(),color_win);
         if( textSurface == nullptr ) {
             SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "Render text surface %s", TTF_GetError());
             return ;
@@ -320,3 +399,64 @@ void Menu::Set_Render_Text_Number(SDL_Rect& rect_,const int& x, TTF_Font* font, 
 
 }
 
+
+void Menu::Show_Continue(SDL_Renderer* des)
+{
+     SDL_RenderCopy(des,background_again,NULL,NULL);
+
+
+        Set_Rect_Coordinate(text_ord[Back], 480, 250);
+    if(check_click[Back] == false)
+     {
+        Set_Render_Text(text_ff[Back].c_str(),text_ord[Back],font1,des,color1);
+     }
+      else{
+
+        Set_Render_Text(text_ff[Back].c_str(),text_ord[Back],font1,des,color2);
+
+      }
+
+        Set_Rect_Coordinate(text_ord[Continue], 480, 320);
+    if(check_click[Continue] == false)
+     {
+        Set_Render_Text(text_ff[Continue].c_str(),text_ord[Continue],font1,des,color1);
+     }
+      else{
+
+        Set_Render_Text(text_ff[Continue].c_str(),text_ord[Continue],font1,des,color2);
+
+      }
+
+
+
+
+
+}
+void Menu :: Set_Menu(SDL_Renderer* des)
+ {
+     back_ground= loadImg("img\\back_menu.jpg", background, des);
+     back_lose=loadImg("img\\back_lose.jpg",background,des);
+     back_win =loadImg("img\\back_win.jpg",background,des);
+     paused_button_black = loadImg("img\\Pause_black.png",pause,des);
+     paused_button_red = loadImg("img\\Pause_red.png",pause,des);
+     background_again = loadImg("img\\back_continue.jpg",background,des);
+
+ }
+void Menu:: Show_Pause_Button(SDL_Renderer *des,SDL_Event event , int x, int y, int& status)
+{
+
+    if(Check_Focus_With_Rect(pause,x,y))
+        {
+
+            SDL_RenderCopy(des,paused_button_red,NULL,&pause);
+            if(event.type == SDL_MOUSEBUTTONDOWN)
+            {
+                status = SHOW_CONTINUE_GAME;
+            }
+
+        }
+     else {SDL_RenderCopy(des,paused_button_black,NULL,&pause); }
+
+
+
+}

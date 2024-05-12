@@ -31,7 +31,7 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1715418660 source:d:\project_game\project\main.cpp
+1715486586 source:d:\project_game\project\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -53,7 +53,7 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1715410652 d:\project_game\project\defs.h
+1715484749 d:\project_game\project\defs.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
@@ -74,7 +74,7 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1715356198 d:\project_game\project\mainobjects.h
+1715486211 d:\project_game\project\mainobjects.h
 	"objects.h"
 	<vector>
 	"BulletObjects.h"
@@ -89,10 +89,10 @@
 1715368491 source:d:\project_game\project\mainobjects.cpp
 	"MainObjects.h"
 
-1715432086 source:d:\project_game\project\menu.cpp
+1715485728 source:d:\project_game\project\menu.cpp
 	"Menu.h"
 
-1715432341 d:\project_game\project\menu.h
+1715484388 d:\project_game\project\menu.h
 	"defs.h"
 	"SDL_ttf.h"
 	<string>
@@ -121,7 +121,7 @@
 	"BulletObjects.h"
 	<vector>
 
-1715361778 source:d:\project_game\project\defs.cpp
+1715484749 source:d:\project_game\project\defs.cpp
 	"defs.h"
 
 1715081045 source:d:\project_game\project\exploitation_objects.cpp

@@ -75,6 +75,8 @@ void play_Chunk(Mix_Chunk* gChunk);
 #define Win_Game 6
 #define Loser 7
 #define Mark_index 8
+#define Continue 9
+#define Back 10
 
 #define Turn_on 1
 #define Turn_off 0
@@ -85,5 +87,6 @@ void play_Chunk(Mix_Chunk* gChunk);
 #define PLAY_GAME 4
 #define SHOW_END_GAME 5
 #define SHOW_WIN_GAME 6
+#define SHOW_CONTINUE_GAME 7
 
 #endif

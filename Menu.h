@@ -11,10 +11,13 @@ class Menu
     ~Menu();
 
 
-    bool load_Img(const char*s , SDL_Renderer* des);
-    void show(SDL_Renderer * des);
+    SDL_Texture* loadImg(const char* s,SDL_Rect& rect, SDL_Renderer* des);
+
     void HanldeInputAction1(SDL_Event , int , int , int&);
     void HanldeInputAction2(SDL_Event , int , int ,int&);
+    void HanldeInputAction3(SDL_Event , int , int ,int&);
+
+
     void Show_Menu(SDL_Renderer *des);
     void Set_Render_Text(const char* text, SDL_Rect&, TTF_Font* font, SDL_Renderer* des,SDL_Color);
     void Set_Rect_Coordinate(SDL_Rect& , int x, int y);
@@ -29,6 +32,10 @@ class Menu
 
     void Show_Win(SDL_Renderer *des,const int&);
     void Set_Render_Text_Number(SDL_Rect& rect_,const int& x ,TTF_Font* font ,SDL_Renderer* des);
+    void Set_Menu(SDL_Renderer*);
+
+    void Show_Continue(SDL_Renderer* des);
+    void Show_Pause_Button(SDL_Renderer* , SDL_Event, int , int , int& );
 
 
 
@@ -36,11 +43,27 @@ class Menu
 
 
  private:
-     SDL_Rect text_ord[9];
+     SDL_Rect text_ord[11];
 
      SDL_Rect index_mark;
-     string text_ff[9];
-    SDL_Texture* obj;
+     SDL_Rect background;
+     SDL_Rect pause;
+
+
+     string text_ff[11];
+
+    SDL_Texture* back_ground;
+    SDL_Texture* back_win;
+    SDL_Texture* back_lose;
+
+    SDL_Texture* paused_button_black;
+    SDL_Texture* paused_button_red;
+
+    SDL_Texture* background_again;
+
+
+
+
     SDL_Color color1 ,color2,color_win,color_lose;
     bool Change_color ;
     int check_music;
@@ -48,6 +71,7 @@ class Menu
     Mix_Chunk* ring = nullptr;
     TTF_Font* font1 =nullptr;
     TTF_Font* font2 = nullptr;
+    bool check_one;
 
 
 
