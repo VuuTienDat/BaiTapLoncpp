@@ -302,7 +302,8 @@ void MainObject::set_clips()
   if(come_back_time >0)
   {
      come_back_time --;
-     if(come_back_time ==0)
+
+     if(come_back_time == 0)
      {
          if(x_pos > 256)
          {
@@ -560,6 +561,7 @@ void MainObject::CheckToMap(Map& map_data)
        if(y_pos >= map_data.max_y - 2 - TILE_SIZE)
        {
            come_back_time = 1;
+
            check_drop = true;
        }
 

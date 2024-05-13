@@ -24,6 +24,7 @@ class objects
   SDL_Rect get_rect(){return rect;}
   bool LoadImg(const char*s,SDL_Renderer *screen);
   void  Render(SDL_Renderer *des, const SDL_Rect* clip = NULL);
+  SDL_Texture* get_object(){return object;}
   void Freedom();
 
   ~objects(){Freedom();}

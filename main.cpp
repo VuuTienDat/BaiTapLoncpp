@@ -182,6 +182,14 @@ void set_up_sound()
         threat_list.erase(threat_list.begin() + i);
 
      }
+     for(int i = 0 ; i < MAX_TILES;i++)
+     {
+        if(Game_map.tile_map[i].get_object() != nullptr)
+        {
+            Game_map.tile_map[i].Freedom();
+
+        }
+     }
 
   }
 
@@ -197,6 +205,14 @@ void close_all(){
 
               }
           }
+     for(int i = 0 ; i < MAX_TILES;i++)
+     {
+        if(Game_map.tile_map[i].get_object() != nullptr)
+        {
+            Game_map.tile_map[i].Freedom();
+
+        }
+     }
 
       exploit.Freedom();
 
@@ -287,17 +303,15 @@ while(check){
                 player.Show(Renderer_);
                 for(int i = 0; i < threat_list.size() ;i++)
                 {
-                   ThreatObjects *threat = threat_list.at(i);
+                   ThreatObjects *threat = threat_list[i];
 
                     if(threat != NULL)
                     {
 
                         threat->Set_MapXY(Game_map.game_map.start_x);
-
                         threat->doPlayer(Game_map.game_map);
                         threat->ImMoveType(Renderer_);
                         threat->Show(Renderer_);
-
 
                     }
 
