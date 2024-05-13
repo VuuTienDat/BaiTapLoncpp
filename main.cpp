@@ -451,7 +451,7 @@ while(check){
                 SDL_RenderPresent(Renderer_);
 
                 int real_imp_time = fps.get_ticks();
-                int time_one_frame = 900/FRAME_PER_SECOND;
+                int time_one_frame = 1000/FRAME_PER_SECOND;
                 if(real_imp_time < time_one_frame)
                 {
                     int delay_time = time_one_frame - real_imp_time;
