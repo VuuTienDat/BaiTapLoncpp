@@ -108,7 +108,8 @@ void Loop_:: set_up_Menu()
       exploit.Freedom();
      for(int i = 0 ; i < threat_list.size(); i++)
      {
-       threat_list[i]->Freedom();
+
+        threat_list[i]->Freedom();
         threat_list.erase(threat_list.begin() + i);
 
      }
@@ -131,6 +132,7 @@ void Loop_:: set_up_Menu()
               if(threat_list[i] != nullptr)
               {
                   threat_list[i]->Freedom();
+                  threat_list.erase(threat_list.begin()+i);
 
               }
           }

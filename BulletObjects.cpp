@@ -13,6 +13,20 @@ BulletObjects::~BulletObjects()
 {
     Freedom();
 }
+bool BulletObjects::LoadImg(const char* s , SDL_Renderer* screen)
+  {
+         bool ret = objects::LoadImg(s,screen);
+   if(ret == true){
+     width_frame = rect.w;
+     height_frame = rect.h;
+
+
+   }
+
+   return ret;
+
+  }
+
 
 void BulletObjects::HandleMove(const int& x_border , const int& y_border)
 {

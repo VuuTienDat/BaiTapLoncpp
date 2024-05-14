@@ -124,6 +124,7 @@ void MainObject::set_clips()
 
                        BulletObjects *bullet = new BulletObjects();
                         bullet->LoadImg("img\\Bullet.png",screen);
+
                         if(status_move == WALK_RIGHT)
                         {
                           bullet->set_bullet_dir(bullet->DIR_RIGHT);
@@ -218,25 +219,25 @@ void MainObject::set_clips()
            {
              if(bullet->Get_is_move() == true)
              {
+                 if(bullet->get_bullet_dir() == bullet->DIR_RIGHT)
+                    {
 
-                if(bullet->get_bullet_dir() == bullet->DIR_RIGHT)
+                           bullet->HandleMove(SCREEN_WIDTH,SCREEN_HEIGHT);
+
+                    }
+                   else
                    {
-                        bullet->HandleMove(SCREEN_WIDTH,SCREEN_HEIGHT);
-
+                       bullet->HandleMove(0,SCREEN_HEIGHT);
 
                    }
-                else
-                  {
-                     bullet->HandleMove(0,SCREEN_HEIGHT);
 
-                  }
                   bullet->Render(des);
 
 
-
-             }
+            }
              else
              {
+               bullet_list[i]->Freedom();
                bullet_list.erase(bullet_list.begin() + i);
                 if(bullet != NULL)
                 {
@@ -246,13 +247,13 @@ void MainObject::set_clips()
 
              }
 
+
            }
 
 
       }
+
  }
-
-
 
 
 
@@ -331,7 +332,7 @@ void MainObject::set_clips()
 void MainObject::CheckToMap(Map& map_data)
     {
 
-        int money_increase = 0;
+
         int x1 = 0;
         int x2 = 0;
         int y1 = 0;
@@ -340,7 +341,7 @@ void MainObject::CheckToMap(Map& map_data)
         x1 = (x_pos + x_dx)/TILE_SIZE;
         x2 = (x_pos + x_dx + width_frame )/TILE_SIZE;
         y1 = (y_pos)/TILE_SIZE;
-        y2 = (y_pos + TILE_SIZE)/TILE_SIZE;
+        y2 = (y_pos + height_frame)/TILE_SIZE;
 
         if(x1 >= 0 && x2 < MAX_MAP_X && y1 >=0 && y2 < MAX_MAP_Y)
         {
@@ -626,3 +627,32 @@ void MainObject :: set_up_main()
     bell = loadSound("music\\beep_.wav");
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -24,11 +24,7 @@ class MainObject: public objects
       void CheckToMap(Map& map_data);
       void Set_Moving_Map(Map& map_data);
       void Set_MapXY(int moving_x);
-      void UpdateImagePlayer(SDL_Renderer* des);
-       void set_bullet_list(vector<BulletObjects*> bullet_list_)
-       {
-          bullet_list = bullet_list_;
-       }
+
      vector <BulletObjects*> get_bullet_list(){return bullet_list;}
       void HandleBullet(SDL_Renderer* des);
 
@@ -42,6 +38,7 @@ class MainObject: public objects
      void set_x_dx(){x_dx= 0 ;}
      void set_y_pos(const int& y){ y_pos = y;}
      void set_up_main();
+
 
 
       int get_money(){return count_money;}

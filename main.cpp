@@ -1,7 +1,4 @@
 #include "set_up_loop.h"
-using namespace std;
-
-
 int main(int argc, char *argv[]) {
 
    Loop_ loop;
