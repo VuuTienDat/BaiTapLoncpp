@@ -594,12 +594,7 @@ void MainObject::Set_Moving_Map(Map &map_data)
 
 void MainObject::Set_MapXY(int moving_x)
   {
-
      map_x_ = moving_x;
-
-
-
-
   }
 void MainObject :: set_up_main()
 {
@@ -613,7 +608,6 @@ void MainObject :: set_up_main()
      status_move = -1;
      input_type.left_ =0;
      input_type.right_=0;
-
      input_type.jump_=0;
      on_ground = false;
      map_x_ =0;

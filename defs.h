@@ -14,7 +14,7 @@ const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 640;
 const int SCREEN_BPP = 32;
 
-const int FRAME_PER_SECOND = 25;
+const int FRAME_PER_SECOND = 20;
 const int COLOR_KEY_R = 167;
 const int COLOR_KEY_G = 175;
 const int COLOR_KEY_B = 180;

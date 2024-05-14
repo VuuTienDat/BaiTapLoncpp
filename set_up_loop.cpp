@@ -201,7 +201,7 @@ while(check){
  else if(status == EXIT_GAME_){ check = false;break;}
   else if(status == PLAY_GAME){
                play_Music(Music_Game,menu.check_music_());
-
+               fps.start();
                 SDL_RenderClear(Renderer_);
                 g_background.Render(Renderer_,NULL);
                 index.Show_(Renderer_, Heart,Coins,mark_);
@@ -309,6 +309,7 @@ while(check){
                 }
                 SDL_RenderPresent(Renderer_);
                 int real_imp_time = fps.get_ticks();
+
                 int time_one_frame = 1000/FRAME_PER_SECOND;
                 if(real_imp_time < time_one_frame)
                 {

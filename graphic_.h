@@ -22,7 +22,7 @@ class graphic_
         SDL_Rect heart;
         SDL_Rect coins;
         SDL_Rect marks;
-         SDL_Rect pause;
+        SDL_Rect pause;
 
         SDL_Rect index_heart;
         SDL_Rect index_coins;
