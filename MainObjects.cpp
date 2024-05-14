@@ -113,6 +113,7 @@ void MainObject::set_clips()
                 case SDLK_UP:
                     {
                        input_type.jump_ = 1;
+
                     }
                     break;
 
@@ -486,6 +487,7 @@ void MainObject::CheckToMap(Map& map_data)
 
 
                 }
+                else{on_ground = false;}
             }
 
            }
