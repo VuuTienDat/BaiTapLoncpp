@@ -602,7 +602,7 @@ void MainObject::Set_MapXY(int moving_x)
   }
 void MainObject :: set_up_main()
 {
-        frame = 0;
+     frame = 0;
       x_pos =0;
       y_pos = 0;
       x_dx  = 0;

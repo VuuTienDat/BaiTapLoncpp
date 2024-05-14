@@ -31,22 +31,8 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1715614432 source:d:\project_game\project\main.cpp
-	<iostream>
-	<SDL.h>
-	<SDL_image.h>
-	"defs.h"
-	"game_map.h"
-	"objects.h"
-	"MainObjects.h"
-	"ImpTimer.h"
-	"BulletObjects.h"
-	<SDL_ttf.h>
-	"ThreatObjects.h"
-	"Exploitation_objects.h"
-	<SDL_mixer.h>
-	"Menu.h"
-	"graphic_.h"
+1715678311 source:d:\project_game\project\main.cpp
+	"set_up_loop.h"
 
 1713109122 d:\project_game\project\graphics.h
 	"defs.h"
@@ -86,7 +72,7 @@
 1713379353 source:d:\project_game\project\objects.cpp
 	"objects.h"
 
-1715585326 source:d:\project_game\project\mainobjects.cpp
+1715676847 source:d:\project_game\project\mainobjects.cpp
 	"MainObjects.h"
 
 1715506278 source:d:\project_game\project\menu.cpp
@@ -136,4 +122,24 @@
 
 1715498636 d:\project_game\project\graphic_.h
 	"defs.h"
+
+1715679020 d:\project_game\project\set_up_loop.h
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"game_map.h"
+	"objects.h"
+	"MainObjects.h"
+	"ImpTimer.h"
+	"BulletObjects.h"
+	<SDL_ttf.h>
+	"ThreatObjects.h"
+	"Exploitation_objects.h"
+	<SDL_mixer.h>
+	"Menu.h"
+	"graphic_.h"
+
+1715679099 source:d:\project_game\project\set_up_loop.cpp
+	"set_up_loop.h"
 
