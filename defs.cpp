@@ -75,10 +75,6 @@ if(right_a > left_b && right_a < right_b)
         }
     }
 
-if (top_a == top_b && right_a == right_b && bottom_a == bottom_b)
-  {
-    return true;
-  }
 
  return false;
 }
